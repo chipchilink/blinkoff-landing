@@ -1,3 +1,4 @@
+const fs = require('fs/promises');
 const gulp = require('gulp');
 const pug = require('gulp-pug');
 const sass = require('gulp-sass')(require('sass'));
@@ -9,82 +10,136 @@ const webpackStream = require('webpack-stream');
 const webpackConfig = require('./webpack.config.js');
 const browserSync = require('browser-sync');
 
-gulp.task('font-preparing', gulp.series(
-  () => gulp
-    .src('./src/fonts/*')
-    .pipe(clean()),
-  () => gulp
-    .src('./fonts.list')
+const paths = {
+  fonts: {
+    config: './fonts.list',
+    input: './src/fonts',
+    output: './dist/fonts',
+  },
+  view: {
+    input: './src/index.pug',
+    output: './dist/',
+  },
+  style: {
+    input: './src/style/main.scss',
+    output: './dist/',
+  },
+  images: {
+    input: './src/images/*',
+    output: './dist/',
+  },
+  js: {
+    input: './src/js/*',
+    output: './dist/',
+  },
+  root: {
+    input: './src',
+    output: './dist',
+  },
+};
+
+const cleanFonts = () =>
+  gulp
+    .src(paths.fonts.input)
+    .pipe(clean());
+
+const generateFonts = () =>
+  gulp
+    .src(paths.fonts.config)
     .pipe(googleWebFonts({
       fontDisplayType: 'swap'
     }))
-    .pipe(gulp.dest('./src/fonts')),
-));
+    .pipe(gulp.dest(paths.fonts.input));
 
-gulp.task('fonts', () => {
-  return gulp
-    .src('./src/fonts/*.woff')
-    .pipe(gulp.dest('./dist/fonts'));
-});
+const fontPreparing = gulp.series(
+  cleanFonts,
+  generateFonts,
+);
 
-gulp.task('html', () => {
-  return gulp
-    .src('./src/*.pug')
+const fonts = () =>
+  gulp
+    .src(paths.fonts.input + '/*.woff')
+    .pipe(gulp.dest(paths.fonts.output));
+
+const html = () =>
+  gulp
+    .src(paths.view.input)
     .pipe(pug())
-    .pipe(gulp.dest('./dist'))
+    .pipe(gulp.dest(paths.view.output))
     .pipe(browserSync.stream());
-});
 
-gulp.task('style', () => {
-	return gulp
-    .src('./src/style/main.scss')
+const style = () =>
+	gulp
+    .src(paths.style.input)
     .pipe(sass({
       includePaths: ['node_modules']
     }).on('error', sass.logError))
     .pipe(cleancss({ level: 2 }))
-    .pipe(gulp.dest('./dist/'))
+    .pipe(gulp.dest(paths.style.output))
     .pipe(browserSync.stream());
-});
 
-gulp.task('images', () => {
-	return gulp
-    .src('./src/images/*')
-    .pipe(gulp.dest('./dist/'))
+const images = () =>
+	gulp
+    .src(paths.images.input)
+    .pipe(gulp.dest(paths.images.output))
     .pipe(browserSync.stream());
-});
 
-gulp.task('js', () => {
-  return gulp.src('./src/js/*')
-    .pipe(webpackStream(webpackConfig), webpack)
-    .pipe(gulp.dest('./dist/'))
+const js = (mode) => () =>
+  gulp.src(paths.js.input)
+    .pipe(webpackStream(webpackConfig(mode)), webpack)
+    .pipe(gulp.dest(paths.js.output))
     .pipe(browserSync.stream());
-});
 
-const build = gulp.series(
-  () => gulp.src('./dist/*').pipe(clean()),
+const init = () =>
+  gulp
+    .src(['./'], { allowEmpty: true })
+    .pipe(gulp.dest(paths.root.output));
+
+const cleany = () =>
+  gulp
+    .src(paths.root.output)
+    .pipe(clean());
+
+const create = (p) => gulp.series(
+  fontPreparing,
+  init,
+  cleany,
   gulp.parallel(
-    gulp.task('fonts'),
-    gulp.task('html'),
-    gulp.task('style'),
-    gulp.task('images'),
-    gulp.task('js'),
+    fonts,
+    html,
+    style,
+    images,
+    js(p.mode),
   ),
 );
 
-const dev = gulp.task('dev', () => {
+const server = (done) => {
   browserSync({
     server: {
-      baseDir: './dist'
+      baseDir: paths.root.output,
     },
     open: true,
     notify: false,
   });
-  gulp.watch('./src/**/*.scss', gulp.task('style'));
-  gulp.watch('./src/**/*.pug', gulp.task('html'));
-  gulp.watch('./src/images/*', gulp.task('images'));
-  gulp.watch('./src/js/*', gulp.task('js'));
-  gulp.watch('./src').on('change', browserSync.reload);
-});
+  done();
+};
+
+const watcher = (done) => {
+  gulp.watch(paths.style.input, style);
+  gulp.watch(paths.view.input, html);
+  gulp.watch(paths.images.input, images);
+  gulp.watch(paths.js.input, js('development'));
+  gulp.watch(paths.root.input).on('change', browserSync.reload);
+  done();
+};
+
+const dev = gulp.series(
+  create({ mode: 'development' }),
+  server,
+  watcher,
+);
+
+const build = create({ mode: 'production' });
 
 module.exports = {
   build,
