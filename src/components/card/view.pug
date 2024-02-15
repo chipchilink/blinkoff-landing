@@ -1,0 +1,6 @@
+mixin card(iconName, title)
+  .card
+    svg(width="60" height="60" viewBox="0 0 60 60")
+      use(xlink:href=iconName)
+    h3= title
+    block

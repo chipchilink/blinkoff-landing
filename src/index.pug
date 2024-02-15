@@ -1,0 +1,107 @@
+include components/logo/view.pug
+include components/card/view.pug
+
+mixin rect 
+  svg(width="340" height="448" viewBox="0 0 340 448" fill="none" xmlns="http://www.w3.org/2000/svg")
+    path(fill-rule="evenodd" clip-rule="evenodd" d="M0 0H340V448H0V151H19.8701V430H320.13V18H19.8701V19H0V0Z" fill="#224965")
+
+include components/scrolled/view.pug
+
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title Hello
+    link(rel="stylesheet" href="main.css")
+  body
+    include icons.pug
+    header.section.head
+      .head-section.left.-dark(style="flex-basis: 60%")
+        .top-bar
+          .logo
+            +logo
+        .head-main
+          .head-content
+            h1 Программно-аппаратный комплекс
+            .-with-line.-left
+              div
+                p Контроля параметров микроклимата промышленного инкубатора
+                .head-actions
+                  button.btn Связаться с нами
+                  +scroll
+      .head-section.right(style="flex-basis: 40%")
+        .top-bar
+          .head-nav
+            ul
+              li 
+                a(href="#") Описание продукта
+              li 
+                a(href="#") О нас
+              li 
+                a(href="#") Контакты
+        .head-main
+          .head-content
+            #incubator
+              img(src="incubator.png")
+            #iphone-app
+              .rect 
+                +rect
+              img(src="iphone-app.png")
+    section.section.flex.-v-center
+      .holder.cols
+        .col.-with-line.-large.-left(style="flex-basis: 40%")
+          +scroll
+          article
+            h2 Цель проекта
+            p.
+              Разработка данного программного-аппаратного комплекса необходима для упрощения
+              и&nbsp;повышения функциональности процесса инкубации домашней птицы.
+            p.
+              Развитие притцеводства крупных компаний, малых предприятий и&nbsp;частных лиц с&nbsp;внедрением
+              современного ПАК приведет к&nbsp;наращиванию мощностей сельского производства и&nbsp;возрастанию
+              релевантности отечественной продукции путем соответствия современным тенденциям развития отраслей
+              промышленности.
+        .col(style="flex-basis: 60%")
+          .-with-substrate
+            img.pict(src="chikens.jpg")
+    section.section.flex.-v-center
+      .holder
+        h2.-t-center.-with-line.-bottom.-large Проблематика
+        p.-t-center.headering Проблемы розничных сетей, магазинов и организаций
+        .flex
+          .cols
+            +card('#buyers', 'Розничные покупатели')
+              p.
+                Представленные контроллеры обладают недостаточным функционалом, например: отсутствует продукт с
+                беспроводным доступом и оповещением о ЧП (при отключении света, выходе датчика из строя и тд.).
+            +card('#currency', 'Сетевые магазины')
+              p.
+                В наличии только зарубежная продукция с высокой производственной и посреднической наценкой.
+            +card('#factory', 'Центры птицеводства и создания инкубационного оборудования')
+              p.
+                Отсутствие технической поддержки контроллеров управления микроклиматом: не обеспечивается
+                гарантия и сервисное обслуживание оборудования.
+            +scroll
+    section.section.flex.-v-center
+      .holder
+        .cols
+          img.pict(src="solve.jpg")
+          .col.-with-line.-left
+            +scroll
+            article
+              h2 Решение
+              p.
+                Конечный продукт:  <strong>программно-аппаратный комплекс</strong>, который состоит из платы
+                управления микроклиматом инкубатора и мобильного приложения для возможности
+                дистанционного контроля и управления работой инкубатора по Bluetooth 4.2.
+                Кроме того, будет представлен сайт проекта с возможностью авторизацией клиента
+                и доступом к панели управления контроллера по сети Wi-Fi.
+              p
+                strong Представленный программно-аппаратный комплекс предлагает: 
+              ul
+                li Уникальный функционал настройки и отладки параметров инкубации;
+                li Более высокие технические характеристики;
+                li Беспроводной доступ и оповещение о ЧП;
+                li Гарантию и техническое обслуживание оборудования;
+
+    script(src="bundle.js")

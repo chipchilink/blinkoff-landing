@@ -1,0 +1,13 @@
+mixin mouse
+  svg.mouse(width="14" height="20" viewBox="0 0 14 20" xmlns="http://www.w3.org/2000/svg")
+    path(fill-rule="evenodd" clip-rule="evenodd" d="M0 7C0 3.13401 2.92507 0 6.53333 0H7.46667C11.0749 0 14 3.13401 14 7V13C14 16.866 11.0749 20 7.46667 20H6.53333C2.92507 20 0 16.866 0 13V7ZM0.93335 7.30003C0.93335 3.8437 3.43491 1.03746 6.53345 1.0004V6.00003H7.46678V1.0004C10.5652 1.03758 13.0667 3.84378 13.0667 7.30003V12.7C13.0667 16.1794 10.5316 19 7.40446 19H6.59557C3.46841 19 0.93335 16.1794 0.93335 12.7V7.30003Z")
+
+mixin scroll-line 
+  svg.scroll-line-end(width="7" height="73" viewBox="0 0 6 73" xmlns="http://www.w3.org/2000/svg")
+    path(d="M3 73L5.88675 68L0.113246 68L3 73ZM2.5 -2.18557e-08L2.5 68.5L3.5 68.5L3.5 2.18557e-08L2.5 -2.18557e-08Z")
+
+mixin scroll 
+  .scrolled(class!=attributes.class style!=attributes.style)
+    +mouse
+    .scroll-line
+    +scroll-line

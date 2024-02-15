@@ -1,0 +1,31 @@
+.scrolled {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  svg {
+    fill: var(--color-line);
+  }
+
+  .-with-line.-left > & {
+    position: absolute;
+    bottom: 0;
+    top: 110px;
+    left: calc(var(--size) / 2);
+    transform: translateX(-50%);
+  }
+
+  .cols > & {
+    flex: 0 0 40px;
+  }
+}
+
+.mouse {
+  margin-bottom: 20px;
+}
+
+.scroll-line {
+  background-color: var(--color-line);
+  width: 1px;
+  flex: 1;
+}

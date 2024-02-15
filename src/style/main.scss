@@ -1,0 +1,284 @@
+:root {
+  --font-title: Roboto, sans-serif;
+  --font-text: Inter, sans-serif;
+
+  --color-strong: #002B4B;
+  --color-text: #668093;
+  --color-line: #B2BFC9;
+  --color-page: #fff;
+  --color-light: #EFEFEF;
+
+  --size-title: 36px;
+  --size-text: 16px;
+
+  --max-width: 1183px;
+  --center-field: calc((100vw - var(--max-width)) / 2);
+}
+
+@import "../fonts/fonts.css";
+@import "normalize.css";
+@import 'reset.scss';
+@import 'mixins.scss';
+@import '../components/scrolled/style.scss';
+@import '../components//card//style.scss';
+
+body {
+  font: 400 var(--size-text) var(--font-text);
+}
+
+h1, h2, h3 {
+  font: 700 var(--size-title) var(--font-title);
+  color: var(--color-strong);
+  text-transform: uppercase;
+  line-height: 1.5em;
+  letter-spacing: 0.05em;
+  margin-bottom: .5em;
+}
+
+p {
+  color: var(--color-text);
+  font-size: var(--size-text);
+}
+
+strong {
+  color: var(--color-strong);
+}
+
+article {
+  li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+    color: var(--color-text);
+  
+    &:before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      border: 3px solid var(--color-strong);
+      display: inline-block;
+      margin-right: 10px;
+      box-sizing: border-box;
+    }
+  }
+}
+
+header, footer, section {
+  background-color: var(--color-page);
+}
+
+.-dark {
+  --color-strong: #fff;
+  --color-text: #b2bec8;
+  --color-line: #b2bfc9;
+  --color-page: #002b4b;
+}
+
+.holder {
+  width: 100%;
+  padding-left: var(--center-field);
+  padding-right: var(--center-field);
+}
+
+.head-nav {
+  text-transform: uppercase;
+  font-family: var(--font-title);
+  font-weight: 700;
+  letter-spacing: .05em;
+  margin-left: 24px;
+
+  ul { display: flex; }
+
+  a {
+    color: var(--color-strong);
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+}
+
+.section {
+  height: 100vh;
+}
+
+.head {
+  --size-title: 40px;
+  --size-text: 24px;
+  display: flex;
+}
+
+.left {
+  padding-left: var(--center-field);
+  position: relative;
+  background-color: var(--color-page);
+
+  &:before {
+    content: '';
+    opacity: 0.1;
+    background: url('schema.png') no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.right {
+  padding-right: var(--center-field);
+  background-color: var(--color-page);
+  position: relative;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  height: 45px;
+  margin-top: 40px;
+}
+
+.head-content {
+  padding-right: 3em;
+  line-height: 2.3em;
+  position: relative;
+}
+
+.-with-line {
+  --size: 36px;
+
+  &.-large {
+    --size: 91px;
+  }
+
+  &.-left {
+    display: flex;
+    align-items: baseline;
+    position: relative;
+
+    &:before {
+      content: '';
+      position: relative;
+      top: -.5em;
+      display: block;
+      flex: 0 0 var(--size);
+      height: 2px;
+      background-color: var(--color-text);
+      margin-right: 12px;
+    }
+  }
+
+  &.-bottom {
+    &:after {
+      content: '';
+      position: relative;
+      display: block;
+      width: var(--size);
+      height: 2px;
+      background-color: var(--color-text);
+      margin: .5em auto;
+    }
+  }
+}
+
+.head-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.head-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.btn {
+  @include reset-button;
+  border: 3px solid var(--color-line);
+  padding: 14px 36px;
+}
+
+#incubator {
+  position: absolute;
+  left: 190px;
+  top: 40px;
+}
+
+#iphone-app {
+  display: inline-block;
+  position: relative;
+  z-index: 0;
+  top: 40px;
+}
+
+.rect {
+  position: absolute;
+  z-index: -1;
+  top: -40px;
+  transform: translateX(-50%);
+  width: 100%;
+
+  svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+
+
+.head-actions {
+  display: inline-block;
+
+  .btn {
+    margin-bottom: 40px;
+  }
+}
+
+.flex {
+  display: flex;
+}
+
+.cols {
+  display: flex;
+  gap: 30px;
+
+  > * {
+    flex: 1;
+  }
+}
+
+.col {
+  flex: 1;
+}
+
+.headering {
+  margin-bottom: 3em;
+}
+
+.pict {
+  display: block;
+}
+
+.-v-center {
+  align-items: center;
+}
+
+.-t-center {
+  text-align: center;
+}
+
+.-with-substrate {
+  position: relative;
+  z-index: 0;
+
+  &:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: calc(100% + 20px);
+    top: -20px;
+    bottom: 30px;
+    background-color: var(--color-light);
+  }
+}
