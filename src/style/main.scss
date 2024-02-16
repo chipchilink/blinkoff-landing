@@ -97,13 +97,15 @@ header, footer, section {
 }
 
 .section {
-  height: 100vh;
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 
 .head {
   --size-title: 40px;
   --size-text: 24px;
   display: flex;
+  height: 100vh;
 }
 
 .left {

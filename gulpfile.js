@@ -1,4 +1,3 @@
-const fs = require('fs/promises');
 const gulp = require('gulp');
 const pug = require('gulp-pug');
 const sass = require('gulp-sass')(require('sass'));
@@ -11,14 +10,18 @@ const webpackConfig = require('./webpack.config.js');
 const browserSync = require('browser-sync');
 
 const paths = {
-  fonts: {
-    config: './fonts.list',
-    input: './src/fonts',
-    output: './dist/fonts',
+  root: {
+    input: './src',
+    output: './dist',
   },
   view: {
     input: './src/index.pug',
     output: './dist/',
+  },
+  fonts: {
+    config: './fonts.list',
+    input: './src/fonts',
+    output: './dist/fonts',
   },
   style: {
     input: './src/style/main.scss',
@@ -31,10 +34,6 @@ const paths = {
   js: {
     input: './src/js/*',
     output: './dist/',
-  },
-  root: {
-    input: './src',
-    output: './dist',
   },
 };
 
@@ -61,7 +60,7 @@ const fonts = () =>
     .src(paths.fonts.input + '/*.woff')
     .pipe(gulp.dest(paths.fonts.output));
 
-const html = () =>
+const view = () =>
   gulp
     .src(paths.view.input)
     .pipe(pug())
@@ -106,7 +105,7 @@ const create = (p) => gulp.series(
   cleany,
   gulp.parallel(
     fonts,
-    html,
+    view,
     style,
     images,
     js(p.mode),
@@ -126,7 +125,7 @@ const server = (done) => {
 
 const watcher = (done) => {
   gulp.watch(paths.style.input, style);
-  gulp.watch(paths.view.input, html);
+  gulp.watch(paths.view.input, view);
   gulp.watch(paths.images.input, images);
   gulp.watch(paths.js.input, js('development'));
   gulp.watch(paths.root.input).on('change', browserSync.reload);

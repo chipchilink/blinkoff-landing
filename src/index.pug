@@ -15,7 +15,7 @@ html
     link(rel="stylesheet" href="main.css")
   body
     include icons.pug
-    header.section.head
+    header.head
       .head-section.left.-dark(style="flex-basis: 60%")
         .top-bar
           .logo
@@ -85,7 +85,8 @@ html
     section.section.flex.-v-center
       .holder
         .cols
-          img.pict(src="solve.jpg")
+          div
+            img.pict(src="solve.jpg")
           .col.-with-line.-left
             +scroll
             article
