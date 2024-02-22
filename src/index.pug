@@ -1,73 +1,72 @@
 include components/logo/view.pug
+include components/nav/view.pug
 include components/card/view.pug
-
-mixin rect 
-  svg(width="340" height="448" viewBox="0 0 340 448" fill="none" xmlns="http://www.w3.org/2000/svg")
-    path(fill-rule="evenodd" clip-rule="evenodd" d="M0 0H340V448H0V151H19.8701V430H320.13V18H19.8701V19H0V0Z" fill="#224965")
-
+include components/card2/view.pug
+include components/btn/view.pug
 include components/scrolled/view.pug
+include components/rect/view.pug
+include components/line/view.pug
+include components/img/view.pug
 
 doctype html
-html
+html(lang="ru")
   head
     meta(charset="utf-8")
     title Hello
     link(rel="stylesheet" href="main.css")
   body
     include icons.pug
-    header.head
+    header#top.head
       .head-section.left.-dark(style="flex-basis: 60%")
+        .schema
         .top-bar
           .logo
             +logo
         .head-main
           .head-content
-            h1 Программно-аппаратный комплекс
+            h1#main-page-title Программно-аппаратный комплекс
             .-with-line.-left
+              +Line
               div
-                p Контроля параметров микроклимата промышленного инкубатора
+                p#main-page-descr Контроля параметров микроклимата промышленного инкубатора
                 .head-actions
-                  button.btn Связаться с нами
+                  +btn('Связаться с нами')
                   +scroll
       .head-section.right(style="flex-basis: 40%")
         .top-bar
-          .head-nav
-            ul
-              li 
-                a(href="#") Описание продукта
-              li 
-                a(href="#") О нас
-              li 
-                a(href="#") Контакты
+          +nav
         .head-main
           .head-content
             #incubator
-              img(src="incubator.png")
+              img(src="incubator.png" alt="")
             #iphone-app
-              .rect 
-                +rect
-              img(src="iphone-app.png")
-    section.section.flex.-v-center
+              +rect
+              img(src="iphone-app.png" alt="")
+
+    section#app-target.section.flex.-v-center
       .holder.cols
         .col.-with-line.-large.-left(style="flex-basis: 40%")
+          +Line
           +scroll
           article
-            h2 Цель проекта
-            p.
-              Разработка данного программного-аппаратного комплекса необходима для упрощения
-              и&nbsp;повышения функциональности процесса инкубации домашней птицы.
-            p.
-              Развитие притцеводства крупных компаний, малых предприятий и&nbsp;частных лиц с&nbsp;внедрением
-              современного ПАК приведет к&nbsp;наращиванию мощностей сельского производства и&nbsp;возрастанию
-              релевантности отечественной продукции путем соответствия современным тенденциям развития отраслей
-              промышленности.
+            h2#app-target-title Цель проекта
+            #app-target-content
+              p.
+                Разработка данного программного-аппаратного комплекса необходима для упрощения
+                и&nbsp;повышения функциональности процесса инкубации домашней птицы.
+              p.
+                Развитие притцеводства крупных компаний, малых предприятий и&nbsp;частных лиц с&nbsp;внедрением
+                современного ПАК приведет к&nbsp;наращиванию мощностей сельского производства и&nbsp;возрастанию
+                релевантности отечественной продукции путем соответствия современным тенденциям развития отраслей
+                промышленности.
         .col(style="flex-basis: 60%")
-          .-with-substrate
-            img.pict(src="chikens.jpg")
-    section.section.flex.-v-center
-      .holder
-        h2.-t-center.-with-line.-bottom.-large Проблематика
-        p.-t-center.headering Проблемы розничных сетей, магазинов и организаций
+          +Img(src="chikens.jpg" alt="")
+
+    section#problem.section.flex.-v-center
+      .holder.-with-line.-bottom.-large
+        h2.-a-title.-t-center Проблематика
+        +Line
+        p.-a-subtitle.-t-center.headering Проблемы розничных сетей, магазинов и организаций
         .flex
           .cols
             +card('#buyers', 'Розничные покупатели')
@@ -82,27 +81,215 @@ html
                 Отсутствие технической поддержки контроллеров управления микроклиматом: не обеспечивается
                 гарантия и сервисное обслуживание оборудования.
             +scroll
-    section.section.flex.-v-center
+
+    section#solve.section.flex.-v-center
       .holder
         .cols
           div
-            img.pict(src="solve.jpg")
+            +Img(src="solve.png" alt="")
           .col.-with-line.-left
+            +Line
             +scroll
-            article
-              h2 Решение
-              p.
+            article.typography
+              h2.-a-title Решение
+              p#solve-descr.
                 Конечный продукт:  <strong>программно-аппаратный комплекс</strong>, который состоит из платы
                 управления микроклиматом инкубатора и мобильного приложения для возможности
                 дистанционного контроля и управления работой инкубатора по Bluetooth 4.2.
                 Кроме того, будет представлен сайт проекта с возможностью авторизацией клиента
                 и доступом к панели управления контроллера по сети Wi-Fi.
               p
-                strong Представленный программно-аппаратный комплекс предлагает: 
-              ul
+                strong#solve-sub-descr Представленный программно-аппаратный комплекс предлагает: 
+              ul#solve-descr-list.-a-list
                 li Уникальный функционал настройки и отладки параметров инкубации;
                 li Более высокие технические характеристики;
                 li Беспроводной доступ и оповещение о ЧП;
                 li Гарантию и техническое обслуживание оборудования;
 
+    section#descr.descr
+      .left.-dark(style="flex-basis: 50%")
+        .descr-left-shape
+        article.descr-main.scroll-block-container
+          h1#descr-main-title Описание продукта
+          nav.descr-nav
+            ul.scroll-block-list
+              li
+                a(href="#monitoring") Беспроводной мониторинг
+              li
+                a(href="#controller") Контроллер
+              li
+                a(href="#specifications") Характеристики
+              li
+                a(href="#android-base") Приложение
+
+          .scroll-block#monitoring.descr-content.-with-line.-medium.-left
+            +Line
+            +scroll
+            .typography
+              h2 Беспроводной мониторинг и контроль процесса инкубации
+              p.
+                Основой комплекса является интуитивно понятное мобильное приложение и веб-сайт,
+                через которые в любом месте и в любое время возможен визуальный контроль и регулирование
+                основных параметров микроклимата.
+              p.
+                Представленное решение позваляет реализовать удаленное оповещение пользователя
+                о возникшем ЧП в процессе инкубации по Wi-Fi и/или GSM связи. Например, в случаях:<br>
+                1) Выходе датчика из строя;<br>
+                2) Неисправной работе нагревательного элемента или не наборе влажности;<br>
+                3) Отключении света;<br>
+
+          .scroll-block#controller.descr-content.-with-line.-medium.-left
+            +Line
+            +scroll
+            .typography
+              h2 Контроллер
+              p.
+                Состоит из основной “родительской” платы управления,  расположенной горизонтально
+                внизу корпуса и “slave-платы”, служащей для индикации показаний на семисегментных
+                индикаторах и ориентации светодиодов с энкодером на фронтальной части устройства.
+              p.
+                Обе платы соединены для обеспечения энергопитания (от родительской к slave)
+                и передачи данных между собой по протоколу SPI.
+
+          .scroll-block#specifications.descr-content.-with-line.-medium.-left
+            +Line
+            +scroll
+            .typography
+              h2.-a-title Основные технические параметры
+              ul.-a-list
+                li Контроллер организован на базе двухъядерного процессора ESP-WROOM-32;
+                li Погрешность таймера - <1 мс.;
+                li Питание: 12 Вольт DC;
+                li Ток нагрузки: Нагрев - 17A/200Вт, Увлажнение - 2А/25Вт, Обдув - 2А/25Вт, Переворот - 4А/50Вт;
+                li Диапазон установки температуры: +1 - +49.9 ℃;
+                li Диапазон установки влажности: 1% - 99%;
+                li Рабочая температура: -20 - +45 ℃;
+                li Работа при влажности: 0 - 100%;
+
+          .scroll-block#android-base.descr-content.-with-line.-medium.-left
+            +Line
+            +scroll
+            .typography
+              h2 Приложение на базе Android 
+              p.
+                Служит для удобного и простого контроля инкубационного процесса со смартфона пользователя.
+              p.
+                Текущий подход позволил реализовать по-настоящему функциональный и информативный интерфейс,
+                дающий быструю и гибкую настройку всего необходимого в одном месте.
+              p.
+                В сумме эти факторы приводят к повышению безопасности процесса инкубации домашней птицы.
+
+      .right(style="flex-basis: 50%")
+
+        .tv#tv-monitoring
+          .tv-block#descr1-smartphone(style="top: 40px")
+            .descr-label(style="top: 0; left: 30px;")
+              .descr-label-inner#descr1-smartphone-label Смартфон
+            img#descr1-smartphone-img(src="descr1-smartphone.png" alt="")
+          .tv-block#descr1-controller(style="left: 200px; bottom: 150px")
+            .descr-label(style="top: 100%; left: 50%; transform: translateX(-50%)")
+              .descr-label-inner#descr1-controller-label Контроллер
+            img#descr1-controller-img(src="descr1-controller.png" alt="")
+          .tv-block#descr1-panel-controller(style="left: 400px; top: 30px")
+            .descr-label(style="top: 100%; left: 50%; transform: translateX(-50%)")
+              .descr-label-inner#descr1-panel-controller-label Сайт. Панель управления
+            img#descr1-panel-controller-img(src="descr1-panel-controller.png" alt="")
+          .tv-block(style="bottom: -20px; left: 180px")
+            img#descr1-bluetooth(src="descr1-bluetooth.png" alt="")
+          .tv-block(style="bottom: -20px; left: 400px")
+            img#descr1-wifi(src="descr1-wifi.png" alt="")
+
+        .tv#tv-controller
+          .tv-block#descr2-slave-plata(style="bottom: 20px; left: 180px")
+            .descr-label(style="top: 30px; left: -70px;")
+              .descr-label-inner#descr2-slave-plata-label slave-плата
+            img#descr2-slave-plata-img(src="descr2-slave-plata.png" alt="")
+          .tv-block#descr2-parent-plata(style="top: 20px; left: 180px")
+            .descr-label(style="top: 60px; left: -70px;")
+              .descr-label-inner#descr2-parent-plata-label Родительская плата
+            .tv-block-image
+              - var n = 1;
+              ul.points#descr3-points
+                while n <= 6
+                  li.point(id="descr3-point-" + n)= n++
+              img#descr2-parent-plata-img(src="descr3-controller.png" alt="")
+
+        .tv#tv-android-base
+          .tv-block#descr4-iphone-app(style="top: 0; left: 100px; transform: translateY(-50%)")
+            img#descr4-iphone-app-img(src="iphone-app.png" alt="")
+
+    section.section.flex.-v-center
+      .holder
+        .cols
+          .col.-with-line.-left
+            +Line
+            +scroll
+            article.typography
+              h2 Комплектация устройства
+              p В базовую комплектацию входит:
+              ul
+                li Контроллер
+                li Датчик температуры скорлупы
+                li Датчик температуры и влажности
+          div
+            img.pict(src="solve.jpg" alt="")
+
+    section.section.flex.-v-center
+      .holder
+        h2.-t-center.-with-line.-bottom.-large Разрабатываемый функционал
+        p.-t-center.headering Идет разработка следующего уникального функционала
+        .flex
+          .cols
+            +card2('#co2', 69, 69)
+              p.
+                Подключение датчика углекислого газа CO2
+            +card2('#temperature', 45, 72)
+              p.
+                Подключение нескольких датчиков температуры по одной шине One-Wire
+            +card2('#gsm', 52, 76)
+              p.
+                Подключение GSM модуля (для беспроводного доступа, где отсутствует Wi-Fi соединение);
+            +card2('#person', 70, 70)
+              p.
+                Разработка личного кабинета пользователя на web-сайте проекта;
+
+    section#about.section.flex.-v-center
+      .holder
+        h2.-t-center.-with-line.-bottom.-large Наша команда
+        p.-t-center.headering Дайте им еще денег
+        .flex
+          .cols.teammates
+            .col
+              img(src="serega-old.jpg")
+              h3 Просто гений
+              p.
+                Делает тут красиво
+            .col
+              img(src="serega-young.jpg")
+              h3 Блинков Сергей
+              p.
+                В поисках финансирования проекта, так же известен как Pay Day
+            .col
+              img(src="lexa.jpg")
+              h3 Веселов Алексей
+              p.
+                Дизайн на все бабки
+            +scroll
+
+    section#contacts.section.flex.-v-center
+      .holder
+        .cols
+          .col.-with-line.-left
+            +Line
+            +scroll
+            article.typography
+              h2 Форма обратной связи
+              p.
+                Если у вас возникли вопросы, персональные предложения или замечания, пожалуйста,
+                заполните данную форму обратной связи. Мы гарантируем, что ваше сообщение будет
+                рассмотрено нашей командой и приведет к необходимым изменениям или улучшениям.
+              p.
+                С уважением,<br> Команда «ООО BlinkStar»
+          div
+            img.pict(src="solve.jpg" alt="")
     script(src="bundle.js")

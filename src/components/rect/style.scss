@@ -1,0 +1,20 @@
+.rect {
+  position: absolute;
+
+  .rect-line {
+    --size: 20px;
+    position: absolute;
+    background-color: #224965;
+  }
+
+  .line-tl { top: 0; left: 0; width: 100%; height: var(--size) }
+  .line-tr { top: 0; left: 100%; width: 0; height: var(--size) }
+  .line-rt { top: 0; right: 0; height: 40%; width: var(--size) }
+  .line-rb { top: 40%; right: 0; height: 60%; width: var(--size) }
+  .line-br { bottom: 0; right: 0; width: 70%; height: var(--size) }
+  .line-bl { bottom: 0; right: 70%; width: 30%; height: var(--size) }
+  .line-lb { bottom: 0; left: 0; height: 60%; width: var(--size) }
+  .line-lt { bottom: 60%; left: 0; height: 0; width: var(--size) }
+}
+
+

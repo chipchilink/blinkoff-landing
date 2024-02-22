@@ -1,0 +1,15 @@
+.head-nav {
+  text-transform: uppercase;
+  font-family: var(--font-title);
+  font-weight: 700;
+  letter-spacing: .05em;
+  margin-left: 24px;
+
+  ul { display: flex; }
+
+  a {
+    color: var(--color-strong);
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+}

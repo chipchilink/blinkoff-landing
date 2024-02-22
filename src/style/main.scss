@@ -20,7 +20,13 @@
 @import 'reset.scss';
 @import 'mixins.scss';
 @import '../components/scrolled/style.scss';
-@import '../components//card//style.scss';
+@import '../components/card/style.scss';
+@import '../components/card2/style.scss';
+@import '../components/nav/style.scss';
+@import '../components/btn/style.scss';
+@import '../components/rect/style.scss';
+@import '../components/line/style.scss';
+@import '../components/img/style.scss';
 
 body {
   font: 400 var(--size-text) var(--font-text);
@@ -31,7 +37,7 @@ h1, h2, h3 {
   color: var(--color-strong);
   text-transform: uppercase;
   line-height: 1.5em;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
   margin-bottom: .5em;
 }
 
@@ -44,7 +50,7 @@ strong {
   color: var(--color-strong);
 }
 
-article {
+.typography {
   li {
     display: flex;
     align-items: center;
@@ -53,8 +59,10 @@ article {
   
     &:before {
       content: '';
-      width: 12px;
-      height: 12px;
+      --size: 12px;
+      width: var(--size);
+      height: var(--size);
+      flex: 0 0 var(--size);
       border: 3px solid var(--color-strong);
       display: inline-block;
       margin-right: 10px;
@@ -80,22 +88,6 @@ header, footer, section {
   padding-right: var(--center-field);
 }
 
-.head-nav {
-  text-transform: uppercase;
-  font-family: var(--font-title);
-  font-weight: 700;
-  letter-spacing: .05em;
-  margin-left: 24px;
-
-  ul { display: flex; }
-
-  a {
-    color: var(--color-strong);
-    padding: 5px 10px;
-    white-space: nowrap;
-  }
-}
-
 .section {
   padding-top: 100px;
   padding-bottom: 100px;
@@ -108,22 +100,21 @@ header, footer, section {
   height: 100vh;
 }
 
+.schema {
+  opacity: 0.1;
+  background: url('schema.png') no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 .left {
   padding-left: var(--center-field);
   position: relative;
   background-color: var(--color-page);
-
-  &:before {
-    content: '';
-    opacity: 0.1;
-    background: url('schema.png') no-repeat;
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
 }
 
 .right {
@@ -145,43 +136,6 @@ header, footer, section {
   position: relative;
 }
 
-.-with-line {
-  --size: 36px;
-
-  &.-large {
-    --size: 91px;
-  }
-
-  &.-left {
-    display: flex;
-    align-items: baseline;
-    position: relative;
-
-    &:before {
-      content: '';
-      position: relative;
-      top: -.5em;
-      display: block;
-      flex: 0 0 var(--size);
-      height: 2px;
-      background-color: var(--color-text);
-      margin-right: 12px;
-    }
-  }
-
-  &.-bottom {
-    &:after {
-      content: '';
-      position: relative;
-      display: block;
-      width: var(--size);
-      height: 2px;
-      background-color: var(--color-text);
-      margin: .5em auto;
-    }
-  }
-}
-
 .head-section {
   display: flex;
   flex-direction: column;
@@ -194,11 +148,7 @@ header, footer, section {
   justify-content: center;
 }
 
-.btn {
-  @include reset-button;
-  border: 3px solid var(--color-line);
-  padding: 14px 36px;
-}
+
 
 #incubator {
   position: absolute;
@@ -230,7 +180,9 @@ header, footer, section {
 
 
 .head-actions {
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: column;
+  height: 230px;
 
   .btn {
     margin-bottom: 40px;
@@ -270,17 +222,190 @@ header, footer, section {
   text-align: center;
 }
 
-.-with-substrate {
-  position: relative;
-  z-index: 0;
 
-  &:before {
-    content: '';
-    position: absolute;
+.-wide {
+
+}
+
+.descr {
+  display: flex;
+  min-height: 100vh;
+
+  .left {
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    position: relative;
+  }
+
+  .right {
     z-index: -1;
-    width: calc(100% + 20px);
-    top: -20px;
-    bottom: 30px;
-    background-color: var(--color-light);
+    overflow: hidden;
   }
 }
+
+.descr-left-shape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-page);
+}
+
+.descr-nav {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  transform: translateX(calc(-100% - 50px));
+
+  a {
+    padding: 1em 0;
+    display: block;
+
+    &.-active,
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &.-active { color: var(--color-strong) }
+  }
+}
+
+.descr-content {
+  padding-right: 3em;
+  margin-bottom: 2em;
+}
+
+.tv {
+  overflow: hidden;
+}
+
+.tv-block {
+  position: absolute;
+}
+
+.descr-main {
+  margin: 100px 0;
+  position: relative;
+
+  h1 {
+    font-size: 36px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+}
+
+.descr-label {
+  display: inline-block;
+  position: absolute;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.descr-label-inner {
+  padding: 4px 7px;
+  background-color: var(--color-strong);
+  color: var(--color-page);
+  font-size: 20px;
+  font-family: var(--font-title);
+  white-space: nowrap;
+}
+
+.-scroll-activate {
+  .scroll-block {
+    position: absolute;
+  }
+
+  .tv {
+    position: absolute;
+    width: 100%;
+    height: 0;
+    top: 50%;
+    left: 0;
+    overflow: unset;
+  }
+}
+
+.-scroll-activate {
+  .scroll-block {
+    &:not(:first-of-type) {
+      .scrolled {
+        display: none;
+      }
+    }
+  }
+}
+
+.tv-block-image {
+  position: relative;
+}
+
+.point {
+  --size: 28px;
+  background-color: #3951CF;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 9999px;
+  color: #fff;
+  text-align: center;
+  line-height: var(--size);
+  position: absolute;
+  z-index: 1;
+}
+
+#descr3-point-1 { top: -17px; left: 27px; }
+#descr3-point-2 { top: 34px; left: 306px; }
+#descr3-point-3 { top: -82px; left: 497px; }
+#descr3-point-4 { top: -28px; left: 184px; }
+#descr3-point-5 { top: 40px; left: 60px; }
+#descr3-point-6 { top: -161px; left: 368px; }
+
+.teammates {
+  --size-title: 20px;
+  text-align: center;
+
+  img { margin-bottom: 10px }
+
+  h3 { margin: 0; text-transform: none; }
+
+  p { line-height: 1.3 }
+}
+
+#top {
+  .rect { width: 340px; height: 448px }
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-inner {
+  padding: 20px;
+}
+
+.-scroll-activate {
+  .shape-1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-page);
+    z-index: 2;
+  }
+
+  .shape-2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-light);
+    z-index: 1; 
+  }
+}
+

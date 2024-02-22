@@ -1,0 +1,20 @@
+.btn {
+  @include reset-button;
+  --size: 3px;
+  padding: 17px 39px;
+  position: relative;
+
+  .btn-line {
+    background: var(--color-line);
+    position: absolute;
+  }
+  
+  .line-1 { top: 0; left: 0; width: 30%; height: var(--size) };
+  .line-2 { top: 0; left: 30%; width: 70%; height: var(--size) };
+  .line-3 { top: 0; right: 0; height: 20%; width: var(--size) };
+  .line-4 { top: 20%; right: 0; height: 80%; width: var(--size) };
+  .line-5 { bottom: 0; right: 0; width: 40%; height: var(--size) };
+  .line-6 { bottom: 0; right: 40%; width: 60%; height: var(--size) };
+  .line-7 { bottom: 0; left: 0; height: 30%; width: var(--size) };
+  .line-8 { bottom: 30%; left: 0; height: 70%; width: var(--size) };
+}

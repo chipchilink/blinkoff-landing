@@ -1,0 +1,58 @@
+.-with-line {
+  --size: 36px;
+
+  .line {
+    position: relative;
+  }
+
+  &.-medium {
+    --size: 61px;
+  }
+
+  &.-large {
+    --size: 91px;
+  }
+
+  &.-left {
+    display: flex;
+    align-items: baseline;
+    position: relative;
+
+    .line {
+      position: relative;
+      top: -.5em;
+      flex: 0 0 var(--size);
+      height: 2px;
+      margin-right: 12px;
+    }
+  }
+
+  &.-bottom {
+    .line {
+      position: relative;
+      display: block;
+      width: var(--size);
+      height: 2px;
+      margin: .3em auto .5em;
+    }
+  }
+}
+
+.line-view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-text);
+}
+
+.-scroll-activate {
+  .scroll-block {
+    &:not(:first-of-type) {
+      .line {
+        opacity: 0;
+      }
+    }
+  }
+}

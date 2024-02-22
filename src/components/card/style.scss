@@ -1,12 +1,12 @@
-.card {
+.card1 {
   --size-title: 16px;
   background-color: var(--color-light);
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 20px;
 
   svg {
     margin-bottom: 10px;
+    flex: 0 0 auto;
   }
 }
