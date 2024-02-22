@@ -33,7 +33,12 @@
       display: block;
       width: var(--size);
       height: 2px;
-      margin: .3em auto .5em;
+      margin: .1em auto 1.5em;
+    }
+
+    .line-view {
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
 }

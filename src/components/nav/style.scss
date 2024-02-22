@@ -9,7 +9,29 @@
 
   a {
     color: var(--color-strong);
-    padding: 5px 10px;
+    padding: 0 10px;
     white-space: nowrap;
+
+    span {
+      position: relative;
+      padding: 5px 0;
+      display: inline-block;
+    };
+
+    span:before {
+      content: '';
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 2px;
+      background-color: var(--color-strong);
+      width: 0;
+      transition: width .33s ease-in-out;
+      position: absolute;
+    }
+
+    &:hover span:before {
+      width: 100%;
+    }
   }
 }

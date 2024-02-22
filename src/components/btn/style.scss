@@ -4,6 +4,32 @@
   padding: 17px 39px;
   position: relative;
 
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: var(--color-line);
+    width: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transition: width .33s ease-in-out;
+    z-index: 0;
+  }
+
+  .btn-text {
+    position: relative;
+    z-index: 1;
+    transition: color .33s ease-in-out;
+  }
+
+  &:hover {
+    &:before {
+      width: 100%;
+    }
+    color: var(--color-page);
+  }
+
   .btn-line {
     background: var(--color-line);
     position: absolute;

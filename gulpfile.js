@@ -124,8 +124,8 @@ const server = (done) => {
 };
 
 const watcher = (done) => {
-  gulp.watch(paths.style.input, style);
-  gulp.watch(paths.view.input, view);
+  gulp.watch('./src/**/*.scss', style);
+  gulp.watch('./src/**/*.pug', view);
   gulp.watch(paths.images.input, images);
   gulp.watch(paths.js.input, js('development'));
   gulp.watch(paths.root.input).on('change', browserSync.reload);
