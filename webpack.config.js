@@ -1,5 +1,6 @@
 module.exports = (mode) => ({
   mode,
+  entry: './src/js/index.js',
   output: {
     filename: 'bundle.js',
   },

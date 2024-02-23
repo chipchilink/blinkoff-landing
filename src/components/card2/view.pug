@@ -1,6 +1,9 @@
 mixin card2(iconName, width, height)
-  .card2
-    .card2-head
-      svg(width=width height=height viewBox="0 0 " + width + " " + height)
-        use(xlink:href=iconName)
-    block
+  .card.card2
+    .shape-1
+    .shape-2
+    .card-inner
+      .card2-head
+        svg(width=width height=height viewBox="0 0 " + width + " " + height)
+          use(xlink:href=iconName)
+      block

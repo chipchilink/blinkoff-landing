@@ -2,7 +2,7 @@ import gsap from 'gsap';
 import { pipe } from './utils';
 import { scroller, shape, line, title, subtitle } from './common';
 
-const id = '#problem';
+const id = '#functional';
 
 const options = {
   scrollTrigger: {
@@ -19,6 +19,6 @@ pipe(
   title(id, l1),
   subtitle(id, l1),
   line(id, l1),
+  shape(id, l1),
   scroller(id),
-  shape(id),
 );

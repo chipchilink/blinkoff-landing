@@ -180,7 +180,7 @@ html(lang="ru")
                 В сумме эти факторы приводят к повышению безопасности процесса инкубации домашней птицы.
 
       .right(style="flex-basis: 50%")
-
+        .descr-right-shape
         .tv#tv-monitoring
           .tv-block#descr1-smartphone(style="top: 40px")
             .descr-label(style="top: 0; left: 30px;")
@@ -218,45 +218,58 @@ html(lang="ru")
           .tv-block#descr4-iphone-app(style="top: 0; left: 100px; transform: translateY(-50%)")
             img#descr4-iphone-app-img(src="iphone-app.png" alt="")
 
-    section.section.flex.-v-center
+    section#complect.section.flex.-v-center
       .holder
         .cols
-          .col.-with-line.-left
+          .col.-with-line.-left.-large(style="flex-basis: 40%")
             +Line
             +scroll
             article.typography
-              h2 Комплектация устройства
-              p В базовую комплектацию входит:
-              ul
+              h2.-a-title Комплектация устройства
+              p.-a-subtitle В базовую комплектацию входит:
+              ul.-a-list
                 li Контроллер
                 li Датчик температуры скорлупы
                 li Датчик температуры и влажности
-          div
-            img.pict(src="solve.jpg" alt="")
+          .scene(style="flex-basis: 60%; height: 431px")
+            .scene-bg
+            .tv-block#complect-controller(style="top: -40px; left: 10px;")
+              .descr-label(style="top: calc(100% + 10px); left: 45%; transform: translateX(-50%);")
+                .descr-label-inner#complect-controller-label Контроллер
+              img.tv-block-image#complect-controller-img(src="complect-controller.png" alt="")
+            .tv-block#complect-skorlupa(style="top: 0px; right: 87px;")
+              .descr-label(style="top: calc(100% - 20px); right: 0;")
+                .descr-label-inner#complect-skorlupa-label Датчик температуры скорлупы
+              img.tv-block-image#complect-skorlupa-img(src="complect-skorlupa.png" alt="")
+            .tv-block#complect-temperature(style="bottom: 18px; left: 318px;")
+              .descr-label(style="bottom: 10px; left: -70px;")
+                .descr-label-inner#complect-temperature-label Датчик температуры и влажности
+              img.tv-block-image#complect-temperature-img(src="complect-temperature.png" alt="")
 
-    section.section.flex.-v-center
-      .holder
-        h2.-t-center.-with-line.-bottom.-large Разрабатываемый функционал
-        p.-t-center.headering Идет разработка следующего уникального функционала
-        .flex
-          .cols
-            +card2('#co2', 69, 69)
-              p.
-                Подключение датчика углекислого газа CO2
-            +card2('#temperature', 45, 72)
-              p.
-                Подключение нескольких датчиков температуры по одной шине One-Wire
-            +card2('#gsm', 52, 76)
-              p.
-                Подключение GSM модуля (для беспроводного доступа, где отсутствует Wi-Fi соединение);
-            +card2('#person', 70, 70)
-              p.
-                Разработка личного кабинета пользователя на web-сайте проекта;
+    section#functional.section.flex.-v-center
+      .holder.-with-line.-bottom.-large
+        h2.-a-title.-t-center Разрабатываемый функционал
+        +Line
+        p.-a-subtitle.-t-center.headering Идет разработка следующего уникального функционала
+        .cols
+          +card2('#co2', 69, 69)
+            p.
+              Подключение датчика углекислого газа CO2
+          +card2('#temperature', 45, 72)
+            p.
+              Подключение нескольких датчиков температуры по одной шине One-Wire
+          +card2('#gsm', 52, 76)
+            p.
+              Подключение GSM модуля (для беспроводного доступа, где отсутствует Wi-Fi соединение);
+          +card2('#person', 70, 70)
+            p.
+              Разработка личного кабинета пользователя на web-сайте проекта;
 
     section#about.section.flex.-v-center
-      .holder
-        h2.-t-center.-with-line.-bottom.-large Наша команда
-        p.-t-center.headering Дайте им еще денег
+      .holder.-with-line.-bottom.-large
+        h2.-a-title.-t-center Наша команда
+        +Line
+        p.-a-subtitle.-t-center.headering Дайте им еще денег
         .flex
           .cols.teammates
             .col

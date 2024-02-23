@@ -222,11 +222,6 @@ header, footer, section {
   text-align: center;
 }
 
-
-.-wide {
-
-}
-
 .descr {
   display: flex;
   min-height: 100vh;
@@ -252,6 +247,15 @@ header, footer, section {
   height: 100%;
   background-color: var(--color-page);
 }
+
+.descr-right-shape {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(217, 217, 217, 0), rgba(217, 217, 217, 1));
+};
 
 .descr-nav {
   position: absolute;
@@ -341,6 +345,7 @@ header, footer, section {
 
 .tv-block-image {
   position: relative;
+  z-index: 1;
 }
 
 .point {
@@ -409,3 +414,15 @@ header, footer, section {
   }
 }
 
+.scene {
+  position: relative;
+}
+
+.scene-bg {
+  position: absolute;
+  width: 100%;
+  height: 0%;
+  background-color: var(--color-light);
+  top: 0;
+  left: 0;
+}

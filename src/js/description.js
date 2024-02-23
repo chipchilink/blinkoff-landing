@@ -69,6 +69,7 @@ const init = (tl) => {
     (tl) => tl.from('.scroll-block-list a', { x: -40, opacity: 0, stagger: 0.1 }),
     line('.scroll-block:first-of-type', 'descr-init', 0.9),
     scroller('.scroll-block:first-of-type', 'descr-init'),
+    (tl) => tl.fromTo('#descr .descr-right-shape', { height: 0 }, { height: '100%' }, 'descr-init'),
   );
 };
 

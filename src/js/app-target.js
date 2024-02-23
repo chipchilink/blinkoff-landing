@@ -1,4 +1,4 @@
-import gsap from './init';
+import gsap from 'gsap';
 import { pipe } from './utils';
 import { scroller, line, img } from './common';
 
