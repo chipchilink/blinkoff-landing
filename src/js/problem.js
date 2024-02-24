@@ -19,6 +19,6 @@ pipe(
   title(id, l1),
   subtitle(id, l1),
   line(id, l1),
-  scroller(id),
-  shape(id),
+  scroller(id, l1 + '+=0.2'),
+  shape(id, l1 + '+=0.3'),
 );

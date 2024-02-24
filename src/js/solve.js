@@ -19,10 +19,10 @@ pipe(
   (tl) => tl.addLabel(l1),
   title(id, l1),
   line(id, l1),
-  (tl) => tl.addLabel(l2),
+  (tl) => tl.addLabel(l2, '-=0.4'),
   scroller(id, l2),
   img(id, l2),
-  (tl) => tl.from('#solve-descr', { opacity: 0, x: 40 }),
+  (tl) => tl.from('#solve-descr', { opacity: 0, x: 40 }, l2),
 );
 
 pipe(
