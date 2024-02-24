@@ -22,16 +22,5 @@ pipe(
   (tl) => tl.addLabel(l2, '-=0.4'),
   scroller(id, l2),
   img(id, l2),
-  (tl) => tl.from('#solve-descr', { opacity: 0, x: 40 }, l2),
-);
-
-pipe(
-  gsap.timeline({
-    scrollTrigger: {
-      trigger: id,
-      start: 'center center',
-    },
-  }),
-  (tl) => tl.from('#solve-sub-descr', { opacity: 0, repeat: 4, duration: 0.1, ease: 'power4.out' }),
-  (tl) => tl.from('#solve-descr-list li', { opacity: 0, x: -40, stagger: 0.1 }),
+  (tl) => tl.from(id + ' .typography', { opacity: 0, x: 40 }, l2),
 );

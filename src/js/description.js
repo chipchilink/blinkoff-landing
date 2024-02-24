@@ -92,7 +92,7 @@ const init = (tl) => {
     line('.scroll-block:first-of-type', 'descr-init', 0.9),
     scroller('.scroll-block:first-of-type', 'descr-init'),
     (tl) => tl.addLabel('descr-init-end'),
-    (tl) => tl.fromTo('#descr .descr-right-shape', { height: 0 }, { height: '100%' }, 'descr-init-end'),
+    (tl) => tl.fromTo('#descr .descr-right-shape', { height: 0 }, { height: '100%' }, 'descr-init'),
   );
 };
 
@@ -137,14 +137,12 @@ const monitoring = (tl) => {
     .add(onStart, l1)
     .from('#descr1-smartphone-label', { x: '101%' }, l1)
     .from('#descr1-smartphone-img', { x: -d, opacity: 0, scale }, l1)
-    .addLabel(l2)
-    .from('#descr1-controller-label', { x: '101%' }, l2)
-    .from('#descr1-controller-img', { y: -d, opacity: 0, scale }, l2)
-    .from('#descr1-bluetooth', { opacity: 0 }, l2 + '+=0.2')
-    .addLabel(l4)
-    .from('#descr1-panel-controller-label', { x: '101%' }, l4)
-    .from('#descr1-panel-controller-img', { x: d, opacity: 0, scale }, l4)
-    .from('#descr1-wifi', { opacity: 0 }, l4 + '+=0.2')
+    .from('#descr1-controller-label', { x: '101%' }, l1)
+    .from('#descr1-controller-img', { y: -d, opacity: 0, scale }, l1)
+    .from('#descr1-bluetooth', { opacity: 0 }, l1 + '+=0.2')
+    .from('#descr1-panel-controller-label', { x: '101%' }, l1)
+    .from('#descr1-panel-controller-img', { x: d, opacity: 0, scale }, l1)
+    .from('#descr1-wifi', { opacity: 0 }, l1 + '+=0.2')
     .addLabel(l6)
     .to('#descr1-smartphone-label', { x: '101%' }, l6)
     .to('#descr1-smartphone-img', { x: -d, opacity: 0, scale }, l6)
@@ -226,8 +224,8 @@ const specifications = (tl) => {
   return tl
     .add(linkActivate.in)
     .add(enter)
-    .from('#tv-controller .point', { stagger: 0.1, scale: 0, y: 10 },)
-    .from(id + ' .-a-list li', { stagger: 0.1, opacity: 0, x: 40 },)
+    .from('#tv-controller .point', { stagger: 0.1, scale: 0, y: 10 })
+    .from(id + ' .-a-list li', { stagger: 0.1, opacity: 0, x: 40 })
     .addLabel(l4)
     .to('#tv-controller .point', { stagger: 0.1, scale: 0, y: 10 }, l4)
     .to('#descr2-parent-plata-img', { x: -d, opacity: 0, scale })
@@ -294,10 +292,10 @@ const t = pipe(
 pipe(
   gsap.timeline({
     scrollTrigger: {
-      start: 'top center',
+      start: 'top 70%',
       trigger: '#descr',
       onEnter: () => {
-        gsap.to(window, scrollTo(t, 'smartphone'));
+        gsap.to(window, scrollTo(t, 'end-monitoring'));
       },
     }
   }),
@@ -308,11 +306,11 @@ pipe(
   gsap.timeline({
     scrollTrigger: {
       trigger: '#descr',
-      start: 'top center',
+      start: 'top 70%',
     },
   }),
   (tl) => {
     return tl
-      .fromTo('#descr .descr-left-shape', { width: 0 }, { width: '100%' });
+      .fromTo('#descr .descr-left-shape', { width: 0, opacity: 0 }, { width: '100%', opacity: 1 });
   },
 );

@@ -8,7 +8,7 @@
     content: '';
     display: block;
     position: absolute;
-    background-color: var(--color-line);
+    background-color: var(--color-strong);
     width: 0;
     height: 100%;
     top: 0;
@@ -31,7 +31,7 @@
   }
 
   .btn-line {
-    background: var(--color-line);
+    background: var(--color-strong);
     position: absolute;
   }
   
