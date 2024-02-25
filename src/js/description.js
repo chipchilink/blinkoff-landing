@@ -1,6 +1,6 @@
 import gsap from './init';
 import { pipe } from './utils';
-import { line, scroller } from './common';
+import { scroller } from './common';
 
 // -------------------------------------------------------------------------------------
 // common
@@ -26,10 +26,6 @@ const scrollTo = (tl, labelName) => {
     scrollTo: tl.scrollTrigger.labelToScroll(labelName),
     ...scrollCfg,
   };
-};
-
-const scrolledTo = (id) => {
-  gsap.to(window, { ...scrollCfg, scrollTo: id });
 };
 
 const anchorById = (tl, id) => (e) => {
@@ -62,6 +58,13 @@ const linkActivateBy = (tl, link) => {
   };
 }
 
+const makeLink = (idLink, toId) => {
+  document.getElementById(idLink).onclick = (e) => {
+    gsap.to(window, { ...scrollCfg, scrollTo: toId });
+    e.preventDefault();
+  };
+};
+
 // -------------------------------------------------------------------------------------
 // init
 // -------------------------------------------------------------------------------------
@@ -69,59 +72,13 @@ const linkActivateBy = (tl, link) => {
 const html = document.documentElement;
 html.classList.add('-scroll-activate');
 
-document.getElementById('nav-descr').onclick = (e) => {
-  gsap.to(window, { ...scrollCfg, scrollTo: "#descr" });
-  e.preventDefault();
-};
-
-document.getElementById('nav-about').onclick = (e) => {
-  gsap.to(window, { ...scrollCfg, scrollTo: "#about" });
-  e.preventDefault();
-};
-
-document.getElementById('nav-contacts').onclick = (e) => {
-  gsap.to(window, { ...scrollCfg, scrollTo: "#contacts" });
-  e.preventDefault();
-};
+makeLink('nav-descr', '#descr');
+makeLink('nav-about', '#about');
+makeLink('nav-contacts', '#contacts');
 
 // -------------------------------------------------------------------------------------
 // sections
 // -------------------------------------------------------------------------------------
-
-const init = (tl) => {
-  const id = '#monitoring';
-
-  const link = document.querySelector(byHref(id));
-  const linkActivate = linkActivateBy(tl, link);
-  const enter = tween(tl, gsap.from(blockProps.el(id), blockProps.from));
-  const onStart = () => {
-    linkActivate.in();
-    enter();
-  };
-
-  const scale = 0.9;
-  const d = 30;
-
-  return pipe(
-    tl,
-    (tl) => tl.addLabel('descr-init'),
-    (tl) => tl.from('#descr-main-title', { y: -40, opacity: 0, }, '<'),
-    (tl) => tl.from('.scroll-block-list a', { x: -40, opacity: 0, stagger: 0.1 }, '<'),
-    line('.scroll-block:first-of-type', 'descr-init', 0.9),
-    scroller('.scroll-block:first-of-type', 'descr-init'),
-    (tl) => tl
-      .fromTo('#descr .descr-right-shape', { height: 0 }, { height: '100%' }, '<')
-      .add(onStart, '<')
-      .from('#descr1-smartphone-label', { x: '101%' }, '<')
-      .from('#descr1-smartphone-img', { x: -d, opacity: 0, scale }, '<')
-      .from('#descr1-controller-label', { x: '101%' }, '<')
-      .from('#descr1-controller-img', { y: -d, opacity: 0, scale }, '<')
-      .from('#descr1-bluetooth', { opacity: 0 }, '<' + '+=0.2')
-      .from('#descr1-panel-controller-label', { x: '101%' }, '<')
-      .from('#descr1-panel-controller-img', { x: d, opacity: 0, scale }, '<')
-      .from('#descr1-wifi', { opacity: 0 }, '<' + '+=0.2'),
-  );
-};
 
 const monitoring = (tl) => {
   const id = '#monitoring';
@@ -131,13 +88,9 @@ const monitoring = (tl) => {
   const anchor = anchorById(tl, 'end-monitoring');
   link.onclick = anchor;
   const linkActivate = linkActivateBy(tl, link);
+  link.classList.add('-active');
 
   const leave = tween(tl, gsap.to(blockProps.el(id), blockProps.to));
-
-  const onEnd = () => {
-    linkActivate.out();
-    leave();
-  };
 
   const l6 = 'end-monitoring';
 
@@ -156,7 +109,8 @@ const monitoring = (tl) => {
     .to('#descr1-panel-controller-img', { x: d, opacity: 0, scale }, l6)
     .to('#descr1-bluetooth', { opacity: 0 }, l6)
     .to('#descr1-wifi', { opacity: 0 }, l6)
-    .add(onEnd);
+    .add(leave)
+    .add(linkActivate.out);
 };
 const controller = (tl) => {
   const id = '#controller';
@@ -170,23 +124,14 @@ const controller = (tl) => {
   const enter = tween(tl, gsap.from(blockProps.el(id), blockProps.from));
   const leave = tween(tl, gsap.to(blockProps.el(id), blockProps.to));
 
-  const onStart = () => {
-    linkActivate.in();
-    enter();
-  };
-
-  const onEnd = () => {
-    linkActivate.out();
-    leave();
-  };
-
   const l3 = 'end-controller';
 
   const scale = 0.9;
   const d = 30;
 
   return tl
-    .add(onStart)
+    .add(linkActivate.in)
+    .add(enter)
     .set('#descr2-parent-plata-img', { width: 503 })
     .from('#descr2-slave-plata-label', { x: '101%' })
     .from('#descr2-slave-plata-img', { x: -d, opacity: 0, scale }, '<')
@@ -197,8 +142,8 @@ const controller = (tl) => {
     .to('#descr2-slave-plata-img', { x: -d, opacity: 0, scale }, l3)
     .to('#descr2-parent-plata-label', { x: '101%' }, l3)
     .to('#descr2-parent-plata-img', { scale: 1.5, y: -200 }, l3)
-    .add(onEnd)
-    .add(noop, '+=0.01');
+    .add(leave)
+    .add(linkActivate.out);
 };
 
 const specifications = (tl) => {
@@ -255,12 +200,11 @@ const androidBase = (tl) => {
 pipe(
   gsap.timeline({
     scrollTrigger: {
-      pin: true,
-      trigger: '#descr',
       start: 'top top',
-      end: '+=5000',
+      trigger: '#descr',
       scrub: true,
-      snap: 'labelsDirectional'
+      snap: 'labelsDirectional',
+      pin: true,
     },
   }),
   monitoring,
@@ -272,22 +216,9 @@ pipe(
 pipe(
   gsap.timeline({
     scrollTrigger: {
-      start: 'top 70%',
       trigger: '#descr',
-    }
-  }),
-  init,
-);
-
-pipe(
-  gsap.timeline({
-    scrollTrigger: {
-      trigger: '#descr',
-      start: 'top 70%',
+      start: 'top center',
     },
   }),
-  (tl) => {
-    return tl
-      .fromTo('#descr .descr-left-shape', { width: 0, opacity: 0 }, { width: '100%', opacity: 1 });
-  },
+  scroller('#descr'),
 );
