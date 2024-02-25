@@ -205,6 +205,7 @@ pipe(
       scrub: true,
       snap: 'labelsDirectional',
       pin: true,
+      end: '+=5000'
     },
   }),
   monitoring,
