@@ -100,7 +100,7 @@ const monitoring = (tl) => {
   return tl
     .addLabel('@@')
     .add(noop, '+=0.01')
-    .addLabel(l6)
+    .addLabel(l6, '+=1')
     .to('#descr1-smartphone-label', { x: '101%' }, l6)
     .to('#descr1-smartphone-img', { x: -d, opacity: 0, scale }, l6)
     .to('#descr1-controller-label', { x: '101%' }, l6)
