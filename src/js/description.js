@@ -225,15 +225,14 @@ const specifications = (tl) => {
     .to('#tv-controller .point', { stagger: 0.1, scale: 0, y: 10 }, l4)
     .to('#descr2-parent-plata-img', { x: -d, opacity: 0, scale })
     .add(leave)
-    .add(linkActivate.out)
-    .add(noop, '+=0.01');
+    .add(linkActivate.out);
 };
 
 const androidBase = (tl) => {
   const id = '#android-base';
 
   const link = document.querySelector(byHref(id));
-  const anchor = anchorById(tl, 'end-android-base');
+  const anchor = anchorById(tl, '@');
   link.onclick = anchor;
   const linkActivate = linkActivateBy(tl, link);
 
