@@ -1,9 +1,9 @@
 import './init';
 import './header';
-// import './app-target';
+import './app-target';
 import './problem';
-// import './solve';
+import './solve';
 import './description';
-// import './complect';
+import './complect';
 import './functional';
 import './about';
