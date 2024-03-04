@@ -27,6 +27,7 @@
 @import '../components/rect/style.scss';
 @import '../components/line/style.scss';
 @import '../components/img/style.scss';
+@import '../components/nav-foot/style.scss';
 
 body {
   font: 400 var(--size-text) var(--font-text);
@@ -83,7 +84,6 @@ header, footer, section {
 }
 
 .holder {
-  width: 100%;
   padding-left: var(--center-field);
   padding-right: var(--center-field);
 }
@@ -98,6 +98,16 @@ header, footer, section {
   --size-text: 24px;
   display: flex;
   height: 100vh;
+}
+
+.foot {
+  padding: 30px 0;
+}
+
+.foot-top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
 }
 
 .schema {
@@ -424,4 +434,44 @@ header, footer, section {
   background-color: var(--color-light);
   top: 0;
   left: 0;
+}
+
+.form-group {
+  margin-bottom: 20px;
+
+  label {
+    color: var(--color-strong);
+    font-size: 18px;
+    display: block;
+  }
+
+  input {
+    border: 0;
+    border-bottom: 1px solid var(--color-strong);
+    padding: 8px 0;
+    width: 100%;
+    background-color: transparent;
+    outline: 0;
+  }
+}
+
+.foot-content {
+  width: 60%;
+  margin-left: 40%;
+}
+
+.-with-form {
+  background-color: var(--color-light);
+  display: flex;
+}
+
+.form-container {
+  margin: auto;
+  width: 100%;
+  max-width: 60em;
+  padding: 40px 70px;
+}
+
+.-in-left {
+  margin-right: 20px;
 }

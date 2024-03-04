@@ -7,3 +7,4 @@ import './description';
 import './complect';
 import './functional';
 import './about';
+import './contact';

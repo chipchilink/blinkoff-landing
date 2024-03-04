@@ -7,6 +7,7 @@ include components/scrolled/view.pug
 include components/rect/view.pug
 include components/line/view.pug
 include components/img/view.pug
+include components/nav-foot/view.pug
 
 doctype html
 html(lang="ru")
@@ -43,7 +44,7 @@ html(lang="ru")
               +rect
               img(src="iphone-app.png" alt="")
 
-    section#app-target.section.flex.-v-center
+    section#app-target.section
       .holder.cols
         .col.-with-line.-large.-left(style="flex-basis: 40%")
           +Line
@@ -62,7 +63,7 @@ html(lang="ru")
         .col(style="flex-basis: 60%")
           +Img(src="chikens.jpg" alt="")
 
-    section#problem.section.flex.-v-center
+    section#problem.section
       .holder.-with-line.-bottom.-large
         h2.-a-title.-t-center Проблематика
         +Line
@@ -82,7 +83,7 @@ html(lang="ru")
                 гарантия и сервисное обслуживание оборудования.
             +scroll
 
-    section#solve.section.flex.-v-center
+    section#solve.section
       .holder
         .cols
           div
@@ -218,7 +219,7 @@ html(lang="ru")
           .tv-block#descr4-iphone-app(style="top: 0; left: 100px; transform: translateY(-50%)")
             img#descr4-iphone-app-img(src="iphone-app.png" alt="")
 
-    section#complect.section.flex.-v-center
+    section#complect.section
       .holder
         .cols
           .col.-with-line.-left.-large(style="flex-basis: 40%")
@@ -246,7 +247,7 @@ html(lang="ru")
                 .descr-label-inner#complect-temperature-label Датчик температуры и влажности
               img.tv-block-image#complect-temperature-img(src="complect-temperature.png" alt="")
 
-    section#functional.section.flex.-v-center
+    section#functional.section
       .holder.-with-line.-bottom.-large
         h2.-a-title.-t-center Разрабатываемый функционал
         +Line
@@ -265,7 +266,7 @@ html(lang="ru")
             p.
               Разработка личного кабинета пользователя на web-сайте проекта;
 
-    section#about.section.flex.-v-center
+    section#about.section
       .holder.-with-line.-bottom.-large
         h2.-a-title.-t-center Наша команда
         +Line
@@ -289,7 +290,7 @@ html(lang="ru")
                 Дизайн на все бабки
             +scroll
 
-    section#contacts.section.flex.-v-center
+    section#contacts.section
       .holder
         .cols
           .col.-with-line.-left
@@ -303,6 +304,29 @@ html(lang="ru")
                 рассмотрено нашей командой и приведет к необходимым изменениям или улучшениям.
               p.
                 С уважением,<br> Команда «ООО BlinkStar»
-          div
-            img.pict(src="solve.jpg" alt="")
+          .col.-with-form
+            form.form-container(action="")
+              .form-group
+                label(for="contact-name") Ваше имя
+                input(id="contact-name" required)
+              .form-group
+                label(for="contact-phone") Телефон
+                input(id="contact-phone" type="tel" pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}" required)
+              .form-group 
+                label(for="contact-mail") Email
+                input(id="contact-mail" type="email")
+              +btn("Отправить")
+    footer.foot.-dark
+      .holder
+        .foot-top
+          a.a-link(href="#top")
+            +logo
+          +NavFoot
+        .foot-content
+          .flex
+            img.-in-left(src="fond.png" alt="")
+            .typography
+              p.
+                Проект  реализован при финансовой поддержке Фонда содействия
+                инновациям (конкурс «Студенческий стартап» III очередь)
     script(src="bundle.js")

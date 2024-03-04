@@ -6,8 +6,6 @@ import { scroller } from './common';
 // common
 // -------------------------------------------------------------------------------------
 
-const noop = () => {};
-
 const blockProps = {
   from: { x: 40, opacity: 0, paused: true },
   to: { opacity: 0, paused: true },
@@ -58,13 +56,6 @@ const linkActivateBy = (tl, link) => {
   };
 }
 
-const makeLink = (idLink, toId) => {
-  document.getElementById(idLink).onclick = (e) => {
-    gsap.to(window, { ...scrollCfg, scrollTo: toId });
-    e.preventDefault();
-  };
-};
-
 // -------------------------------------------------------------------------------------
 // init
 // -------------------------------------------------------------------------------------
@@ -72,9 +63,15 @@ const makeLink = (idLink, toId) => {
 const html = document.documentElement;
 html.classList.add('-scroll-activate');
 
-makeLink('nav-descr', '#descr');
-makeLink('nav-about', '#about');
-makeLink('nav-contacts', '#contacts');
+Array.from(document.querySelectorAll('.a-link')).forEach((link) => {
+  link.addEventListener('click', (e) => {
+    gsap.to(window, {
+      ...scrollCfg,
+      scrollTo: link.getAttribute('href'),
+    });
+    e.preventDefault();
+  });
+});
 
 // -------------------------------------------------------------------------------------
 // sections
@@ -99,7 +96,6 @@ const monitoring = (tl) => {
 
   return tl
     .addLabel('@@')
-    .add(noop, '+=0.01')
     .addLabel(l6, '+=1')
     .to('#descr1-smartphone-label', { x: '101%' }, l6)
     .to('#descr1-smartphone-img', { x: -d, opacity: 0, scale }, l6)

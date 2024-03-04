@@ -1,0 +1,42 @@
+.foot-nav {
+  text-transform: uppercase;
+  font-family: var(--font-title);
+  font-weight: 700;
+  letter-spacing: .05em;
+  display: flex;
+  margin-left: auto;
+
+  ul {
+    display: grid;
+    margin-left: auto;
+    grid-auto-flow: column;
+    grid-column-gap: 20px;
+  }
+
+  a {
+    color: var(--color-text);
+    white-space: nowrap;
+
+    span {
+      position: relative;
+      padding: 5px 0;
+      display: inline-block;
+    };
+
+    span:before {
+      content: '';
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 2px;
+      background-color: var(--color-text);
+      width: 0;
+      transition: width .33s ease-in-out;
+      position: absolute;
+    }
+
+    &:hover span:before {
+      width: 100%;
+    }
+  }
+}
