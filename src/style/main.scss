@@ -15,7 +15,7 @@
   --center-field: calc((100vw - var(--max-width)) / 2);
 }
 
-@import "../fonts/fonts.css";
+@import "./fonts.css";
 @import "normalize.css";
 @import 'reset.scss';
 @import 'mixins.scss';

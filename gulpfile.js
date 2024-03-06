@@ -21,7 +21,7 @@ const paths = {
   fonts: {
     config: './fonts.list',
     input: './src/fonts',
-    output: './dist/fonts',
+    output: './dist/',
   },
   style: {
     input: './src/style/main.scss',
@@ -39,10 +39,10 @@ const paths = {
 
 const cleanFonts = () =>
   gulp
-    .src(paths.fonts.input)
+    .src(paths.fonts.input, { allowEmpty: true })
     .pipe(clean());
 
-const generateFonts = () =>
+const generate1 = () =>
   gulp
     .src(paths.fonts.config)
     .pipe(googleWebFonts({
@@ -50,9 +50,15 @@ const generateFonts = () =>
     }))
     .pipe(gulp.dest(paths.fonts.input));
 
+const extractFontCSS = () =>
+  gulp
+    .src(paths.fonts.input + '/fonts.css')
+    .pipe(gulp.dest('./src/style'));
+
 const fontPreparing = gulp.series(
   cleanFonts,
-  generateFonts,
+  generate1,
+  extractFontCSS,
 );
 
 const fonts = () =>

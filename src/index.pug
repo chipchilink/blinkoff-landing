@@ -16,6 +16,8 @@ html(lang="ru")
     title Программно-аппаратный комплекс для промышленных инкубаторов
     link(rel="stylesheet" href="main.css")
     link(rel="icon" href="favicon-16x16.png" type="image/x-icon")
+    script.
+      document.documentElement.style.opacity = 0;
   body
     include icons.pug
     header#top.head
@@ -331,3 +333,5 @@ html(lang="ru")
                 Проект  реализован при финансовой поддержке Фонда содействия
                 инновациям (конкурс «Студенческий стартап» III очередь)
     script(src="bundle.js")
+    script.
+      document.documentElement.style.opacity = 1;
