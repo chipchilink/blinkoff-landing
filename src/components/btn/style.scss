@@ -4,6 +4,15 @@
   padding: 17px 39px;
   position: relative;
 
+  &[type="submit"] {
+    border: var(--size) solid var(--color-strong);
+    transition: background-color .33s ease-in-out;
+
+    &:hover {
+      background-color: var(--color-strong);
+    }
+  }
+
   &:before {
     content: '';
     display: block;

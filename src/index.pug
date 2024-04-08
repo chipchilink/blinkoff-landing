@@ -272,25 +272,24 @@ html(lang="ru")
     section#about.section
       .holder.-with-line.-bottom.-large
         h2.-a-title.-t-center Наша команда
-        +Line
-        p.-a-subtitle.-t-center.headering Дайте им еще денег
         .flex
           .cols.teammates
             .col
               img(src="serega-old.jpg")
-              h3 Просто гений
-              p.
-                Делает тут красиво
+              h3 Башмаков Сергей
+              p web разработчик
             .col
               img(src="serega-young.jpg")
               h3 Блинков Сергей
-              p.
-                В поисках финансирования проекта, так же известен как Pay Day
+              p Инженер-конструктор печатных плат. Программист микроконтроллеров
             .col
               img(src="lexa.jpg")
               h3 Веселов Алексей
-              p.
-                Дизайн на все бабки
+              p Дизайнер
+            .col
+              img(src="sensei.png")
+              h3 Старов Дмитрий
+              p Научный наставник. <br>Автор идеи
             +scroll
 
     section#contacts.section
@@ -308,17 +307,20 @@ html(lang="ru")
               p.
                 С уважением,<br> Команда «ООО BlinkStar»
           .col.-with-form
-            form.form-container(action="")
+            form#mail-sender.form-container(action="/mail.php" method="post")
               .form-group
                 label(for="contact-name") Ваше имя
-                input(id="contact-name" required)
+                input(id="contact-name" name="contanct-name" required)
               .form-group
                 label(for="contact-phone") Телефон
-                input(id="contact-phone" type="tel" pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}" required)
+                input(id="contact-phone" name="phone" type="tel" pattern="(\\+7|8)\\s?\\(?\\d{3}\\)?\\s?\\d{3}-?\\d{2}-?\\d{2}" required)
               .form-group 
                 label(for="contact-mail") Email
-                input(id="contact-mail" type="email")
-              +btn("Отправить")
+                input(id="contact-mail" name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
+              +submit("Отправить")
+              .success
+                .success-back
+                .success-message Успех!
     footer.foot.-dark
       .holder
         .foot-top

@@ -18,6 +18,10 @@ const paths = {
     input: './src/index.pug',
     output: './dist/',
   },
+  php: {
+    input: './src/*.php',
+    output: './dist/',
+  },
   fonts: {
     config: './fonts.list',
     input: './src/fonts',
@@ -95,6 +99,11 @@ const js = (mode) => () =>
     .pipe(gulp.dest(paths.js.output))
     .pipe(browserSync.stream());
 
+const php = () =>
+    gulp
+      .src(paths.php.input)
+      .pipe(gulp.dest(paths.php.output));
+
 const init = () =>
   gulp
     .src(['./'], { allowEmpty: true })
@@ -113,6 +122,7 @@ const create = (p) => gulp.series(
     fonts,
     view,
     style,
+    php,
     images,
     js(p.mode),
   ),
