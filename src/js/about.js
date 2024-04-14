@@ -31,4 +31,5 @@ pipe(
   teammate('1', l1),
   teammate('2', l1 + '+=0.2'),
   teammate('3', l1 + '+=0.4'),
+  teammate('4', l1 + '+=0.6'),
 );

@@ -320,7 +320,11 @@ html(lang="ru")
               +submit("Отправить")
               .success
                 .success-back
-                .success-message Успех!
+                .success-message
+                  svg.success-icon(width=76 height=76 viewBox="0 0 76 76")
+                    use(xlink:href="#success")
+                  h4.success-title Данные успешно отправлены
+                  p С уважением,<br> Команда «ООО BlinkStar»
     footer.foot.-dark
       .holder
         .foot-top

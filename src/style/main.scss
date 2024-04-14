@@ -494,12 +494,19 @@ header, footer, section {
   }
 
   &-back {
-    background-color: var(--color-strong);
+    background-color: var(--color-light);
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+  }
+
+  &-title {
+    color: var(--color-strong);
+    font-size: 20px;
+    white-space: nowrap;
+    margin-bottom: 10px;
   }
 
   &-message {
@@ -509,5 +516,6 @@ header, footer, section {
     transform: translate(-50%, -50%);
     color: var(--color-page);
     font-size: 24px;
+    text-align: center;
   }
 }
