@@ -9,3 +9,4 @@ import './functional';
 import './about';
 import './contact';
 import './mail';
+import './descr3-assoc';

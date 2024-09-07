@@ -6,10 +6,16 @@ import { scroller } from './common';
 // common
 // -------------------------------------------------------------------------------------
 
+const blockPropsOwner = {
+  from: { pointerEvents: 'auto' },
+  to: { pointerEvents: 'none' },
+  el: (id) => id,
+};
+
 const blockProps = {
   from: { x: 40, opacity: 0, paused: true },
   to: { opacity: 0, paused: true },
-  el: (id) => id + ' .typography',
+  el: (id) => blockPropsOwner.el(id) + ' .typography',
 };
 
 const byHref = (id) => `a[href="${id}"]`;
@@ -97,6 +103,7 @@ const monitoring = (tl) => {
   return tl
     .addLabel('@@')
     .addLabel(l6, '+=1')
+    .set(blockPropsOwner.el(id), blockPropsOwner.from)
     .to('#descr1-smartphone-label', { x: '101%' }, l6)
     .to('#descr1-smartphone-img', { x: -d, opacity: 0, scale }, l6)
     .to('#descr1-controller-label', { x: '101%' }, l6)
@@ -106,6 +113,7 @@ const monitoring = (tl) => {
     .to('#descr1-bluetooth', { opacity: 0 }, l6)
     .to('#descr1-wifi', { opacity: 0 }, l6)
     .add(leave)
+    .set(blockPropsOwner.el(id), blockPropsOwner.to)
     .add(linkActivate.out);
 };
 const controller = (tl) => {
@@ -128,6 +136,7 @@ const controller = (tl) => {
   return tl
     .add(linkActivate.in)
     .add(enter)
+    .set(blockPropsOwner.el(id), blockPropsOwner.from)
     .set('#descr2-parent-plata-img', { width: 503 })
     .from('#descr2-slave-plata-label', { x: '101%' })
     .from('#descr2-slave-plata-img', { x: -d, opacity: 0, scale }, '<')
@@ -139,6 +148,7 @@ const controller = (tl) => {
     .to('#descr2-parent-plata-label', { x: '101%' }, l3)
     .to('#descr2-parent-plata-img', { scale: 1.5, y: -200 }, l3)
     .add(leave)
+    .set(blockPropsOwner.el(id), blockPropsOwner.to)
     .add(linkActivate.out);
 };
 
@@ -161,11 +171,13 @@ const specifications = (tl) => {
   return tl
     .add(linkActivate.in)
     .add(enter)
+    .set(blockPropsOwner.el(id), blockPropsOwner.from)
     .from('#tv-controller .point', { stagger: 0.1, scale: 0, y: 10 })
     .addLabel(l4)
     .to('#tv-controller .point', { stagger: 0.1, scale: 0, y: 10 }, l4)
     .to('#descr2-parent-plata-img', { x: -d, opacity: 0, scale })
     .add(leave)
+    .set(blockPropsOwner.el(id), blockPropsOwner.to)
     .add(linkActivate.out);
 };
 
@@ -185,6 +197,7 @@ const androidBase = (tl) => {
   return tl
     .add(linkActivate.in)
     .add(enter)
+    .set(blockPropsOwner.el(id), blockPropsOwner.from)
     .from('#descr4-iphone-app-img', { x: -d, opacity: 0, scale })
     .addLabel('@');
 };

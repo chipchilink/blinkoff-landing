@@ -288,6 +288,15 @@ header, footer, section {
 .descr-content {
   padding-right: 3em;
   margin-bottom: 2em;
+  pointer-events: none;
+}
+
+.descr-item {
+  transition: all .33s ease-in-out;
+
+  &.-active {
+    color: #fff;
+  }
 }
 
 .tv {
@@ -368,14 +377,18 @@ header, footer, section {
   line-height: var(--size);
   position: absolute;
   z-index: 1;
+  cursor: pointer;
+
+  &.-active {
+    background-color: rgb(0, 168, 84);
+  }
 }
 
 #descr3-point-1 { top: -17px; left: 27px; }
 #descr3-point-2 { top: 34px; left: 306px; }
-#descr3-point-3 { top: -82px; left: 497px; }
-#descr3-point-4 { top: -28px; left: 184px; }
-#descr3-point-5 { top: 40px; left: 60px; }
-#descr3-point-6 { top: -161px; left: 368px; }
+#descr3-point-3 { top: -28px; left: 184px; }
+#descr3-point-4 { top: 40px; left: 60px; }
+#descr3-point-5 { top: -161px; left: 368px; }
 
 .teammates {
   --size-title: 20px;
@@ -456,8 +469,22 @@ header, footer, section {
 }
 
 .foot-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  a {
+    color: #fff;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.foot-project {
   width: 60%;
-  margin-left: 40%;
 }
 
 .-with-form {
