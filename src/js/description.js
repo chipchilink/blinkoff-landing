@@ -1,5 +1,5 @@
 import gsap from './init';
-import { pipe } from './utils';
+import { pipe, only, desktopScreen } from './utils';
 import { scroller } from './common';
 
 // -------------------------------------------------------------------------------------
@@ -206,29 +206,31 @@ const androidBase = (tl) => {
 // main
 // -------------------------------------------------------------------------------------
 
-pipe(
-  gsap.timeline({
-    scrollTrigger: {
-      start: 'top top',
-      trigger: '#descr',
-      scrub: true,
-      snap: 'labelsDirectional',
-      pin: true,
-      end: '+=5000'
-    },
-  }),
-  monitoring,
-  controller,
-  specifications,
-  androidBase,
-);
-
-pipe(
-  gsap.timeline({
-    scrollTrigger: {
-      trigger: '#descr',
-      start: 'top center',
-    },
-  }),
-  scroller('#descr'),
-);
+only(desktopScreen, () => {
+  pipe(
+    gsap.timeline({
+      scrollTrigger: {
+        start: 'top top',
+        trigger: '#descr',
+        scrub: true,
+        snap: 'labelsDirectional',
+        pin: true,
+        end: '+=5000'
+      },
+    }),
+    monitoring,
+    controller,
+    specifications,
+    androidBase,
+  );
+  
+  pipe(
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: '#descr',
+        start: 'top center',
+      },
+    }),
+    scroller('#descr'),
+  );
+});

@@ -1,6 +1,10 @@
 .rect {
   position: absolute;
 
+  @media (max-width: $md) {
+    display: none;
+  }
+
   .rect-line {
     --size: 20px;
     position: absolute;

@@ -1,5 +1,8 @@
 include components/logo/view.pug
+include components/logo-mobile/view.pug
 include components/nav/view.pug
+include components/nav-mobile/view.pug
+include components/burger/view.pug
 include components/card/view.pug
 include components/card2/view.pug
 include components/btn/view.pug
@@ -13,6 +16,7 @@ doctype html
 html(lang="ru")
   head
     meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width,initial-scale=1")
     title Программно-аппаратный комплекс для промышленных инкубаторов
     link(rel="stylesheet" href="main.css")
     link(rel="icon" href="favicon-16x16.png" type="image/x-icon")
@@ -35,8 +39,15 @@ html(lang="ru")
       document.documentElement.style.opacity = 0;
   body
     include icons.pug
+    .-m.mobile-head
+      .mobile-bar
+        .mobile-bar-backdrop
+        .mobile-logo
+          +logo-mobile
+        +burger
+      +nav-mobile
     header#top.head
-      .head-section.left.-dark(style="flex-basis: 60%")
+      .head-section.left.-dark
         .schema
         .top-bar
           .logo
@@ -51,7 +62,12 @@ html(lang="ru")
                 .head-actions
                   +btn('Связаться с нами')
                   +scroll
-      .head-section.right(style="flex-basis: 40%")
+            .-m.-m-head-picts
+              #m-head-incubator
+                img(src="incubator.png" alt="" width="224" height="194")
+              #m-head-iphone-app
+                img(src="iphone-app.png" alt="" width="178" height="299")
+      .head-section.right
         .top-bar
           +nav
         .head-main
@@ -68,7 +84,7 @@ html(lang="ru")
           +Line
           +scroll
           article
-            h2#app-target-title Цель проекта
+            h2.title#app-target-title Цель проекта
             #app-target-content
               p.
                 Разработка данного программного-аппаратного комплекса необходима для упрощения
@@ -81,7 +97,7 @@ html(lang="ru")
 
     section#problem.section
       .holder.-with-line.-bottom.-large
-        h2.-a-title.-t-center Проблематика
+        h2.title.-a-title.-t-center Проблематика
         +Line
         p.-a-subtitle.-t-center.headering Проблемы розничных сетей, магазинов и организаций
         .flex
@@ -102,13 +118,15 @@ html(lang="ru")
     section#solve.section
       .holder
         .cols
-          div
+          div.solve-img
             +Img(src="solve.png" alt="")
           .col.-with-line.-left
             +Line
             +scroll
             article.typography
-              h2.-a-title Решение
+              h2.title.-a-title Решение
+              .-m
+                +Img(src="solve.png" alt="")
               p#solve-descr.
                 <strong>Программно-аппаратный комплекс</strong> включает в себя контроллер
                 для управления микроклиматом инкубатора и мобильное приложение, которое
@@ -123,10 +141,10 @@ html(lang="ru")
                 li Гарантию и техническое обслуживание оборудования;
 
     section#descr.descr
-      .left.-dark(style="flex-basis: 50%")
+      .left.-dark
         .descr-left-shape
         article.descr-main.scroll-block-container
-          h1#descr-main-title Описание продукта
+          h1.title#descr-main-title Описание продукта
           nav.descr-nav
             ul.scroll-block-list
               li
@@ -154,6 +172,8 @@ html(lang="ru")
                 1. Выходе датчика из строя;<br>
                 2. Неисправной работе нагревательного элемента или не наборе влажности;<br>
                 3. Отключении света;<br>
+            .-m#descr1-mobile
+              img(src="descr1-mobile.png" alt="")
 
           .scroll-block#controller.descr-content.-with-line.-medium.-left
             +Line
@@ -166,6 +186,8 @@ html(lang="ru")
                 индикаторах и ориентации светодиодов с энкодером на фронтальной части устройства.
               p.
                 Обе платы соединены для обеспечения энергопитания и передачи данных по протоколу SPI.
+            .-m#descr2-mobile
+              img(src="descr2-mobile.png" alt="")
 
           .scroll-block#specifications.descr-content.-with-line.-medium.-left
             +Line
@@ -180,6 +202,8 @@ html(lang="ru")
                 li#p3-3.descr-item Диапазон установки влажности: 1% - 99%;
                 li#p4-1.descr-item Рабочая температура: -20 - +45 ℃;
                 li#p4-2.descr-item Работа при влажности: 0 - 100%;
+            .-m#descr3-mobile
+              img(src="descr3-mobile.png" alt="")
 
           .scroll-block#android-base.descr-content.-with-line.-medium.-left
             +Line
@@ -193,8 +217,10 @@ html(lang="ru")
                 дающий быструю и гибкую настройку всего необходимого в одном месте.
               p.
                 В сумме эти факторы приводят к повышению безопасности процесса инкубации домашней птицы.
+            .-m#descr4-mobile
+              img(src="descr4-mobile.png" alt="")
 
-      .right(style="flex-basis: 50%")
+      .right
         .descr-right-shape
         .tv#tv-monitoring
           .tv-block#descr1-smartphone(style="top: 40px")
@@ -236,34 +262,34 @@ html(lang="ru")
     section#complect.section
       .holder
         .cols
-          .col.-with-line.-left.-large(style="flex-basis: 40%")
+          .col.-with-line.-left.-large.complect-info
             +Line
             +scroll
             article.typography
-              h2.-a-title Комплектация устройства
+              h2.title.-a-title Комплектация устройства
               p.-a-subtitle В базовую комплектацию входит:
               ul.-a-list
                 li Контроллер «BS-01»
                 li Датчик температуры скорлупы
                 li Датчик температуры и влажности
-          .scene(style="flex-basis: 60%; height: 431px")
+          .scene.complect-scene
             .scene-bg
-            .tv-block#complect-controller(style="top: -40px; left: 10px;")
-              .descr-label(style="top: calc(100% + 10px); left: 45%; transform: translateX(-50%);")
-                .descr-label-inner#complect-controller-label Контроллер
+            .tv-block#complect-controller
               img.tv-block-image#complect-controller-img(src="complect-controller.png" alt="")
-            .tv-block#complect-skorlupa(style="top: 0px; right: 87px;")
-              .descr-label(style="top: calc(100% - 20px); right: 0;")
-                .descr-label-inner#complect-skorlupa-label Датчик температуры скорлупы
+              .descr-label
+                .descr-label-inner#complect-controller-label Контроллер
+            .tv-block#complect-skorlupa
               img.tv-block-image#complect-skorlupa-img(src="complect-skorlupa.png" alt="")
-            .tv-block#complect-temperature(style="bottom: 18px; left: 318px;")
-              .descr-label(style="bottom: 10px; left: -70px;")
-                .descr-label-inner#complect-temperature-label Датчик температуры и влажности
+              .descr-label
+                .descr-label-inner#complect-skorlupa-label Датчик температуры скорлупы
+            .tv-block#complect-temperature
               img.tv-block-image#complect-temperature-img(src="complect-temperature.png" alt="")
+              .descr-label
+                .descr-label-inner#complect-temperature-label Датчик температуры и влажности
 
     section#functional.section
       .holder.-with-line.-bottom.-large
-        h2.-a-title.-t-center Разрабатываемый функционал
+        h2.title.-a-title.-t-center Разрабатываемый функционал
         +Line
         p.-a-subtitle.-t-center.headering Идет разработка следующего уникального функционала
         .cols
@@ -282,25 +308,25 @@ html(lang="ru")
 
     section#about.section
       .holder.-with-line.-bottom.-large
-        h2.-a-title.-t-center Наша команда
+        h2.title.-a-title.-t-center Наша команда
         .flex
           .cols.teammates
             .col
-              img(src="serega-old.jpg")
-              h3 Башмаков Сергей
-              p web разработчик
+              img(src="sensei.png")
+              h3 Старов Дмитрий
+              p Научный наставник. <br>Автор идеи
             .col
               img(src="serega-young.jpg")
               h3 Блинков Сергей
               p Инженер-конструктор печатных плат. Программист микроконтроллеров
             .col
+              img(src="serega-old.jpg")
+              h3 Башмаков Сергей
+              p web разработчик
+            .col
               img(src="lexa.jpg")
               h3 Веселов Алексей
               p Дизайнер
-            .col
-              img(src="sensei.png")
-              h3 Старов Дмитрий
-              p Научный наставник. <br>Автор идеи
             +scroll
 
     section#contacts.section
@@ -310,7 +336,7 @@ html(lang="ru")
             +Line
             +scroll
             article.typography
-              h2 Форма обратной связи
+              h2.title Форма обратной связи
               p.
                 Если у вас возникли вопросы, персональные предложения или замечания, пожалуйста,
                 заполните данную форму обратной связи. Мы гарантируем, что ваше сообщение будет
@@ -343,14 +369,12 @@ html(lang="ru")
             +logo
           +NavFoot
         .foot-content
-          p.
+          p.foot-company.
             «ООО BlinkStar» <br><a href="mailto:blinkstar.messages@gmail.com">blinkstar.messages@gmail.com</a>
-          .flex.foot-project
-            img.-in-left(src="fond.png" alt="")
+          .foot-project
+            img.foot-fond-img.-in-left(src="fond.png" alt="")
             .typography
               p.
                 Проект  реализован при финансовой поддержке Фонда содействия
                 инновациям (конкурс «Студенческий стартап» III очередь)
     script(src="bundle.js")
-    script.
-      document.documentElement.style.opacity = 1;

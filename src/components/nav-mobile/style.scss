@@ -1,0 +1,37 @@
+.mobile-nav {
+  position: absolute;
+  top: calc(100% - 20px);
+  width: 100%;
+  left: 0;
+  padding: 40px 0 20px;
+  height: calc(100vh - var(--mobile-head-size) + 20px);
+  background-color: var(--color-strong);
+  opacity: 0;
+  transform: translateY(-50px);
+  pointer-events: none;
+  transition: all .33s ease-in-out;
+  z-index: 0;
+  box-sizing: border-box;
+
+  .mobile-head.-active & {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  a {
+    font-size: 16px;
+    padding: 10px var(--side-offset);
+    text-transform: uppercase;
+    display: block;
+
+    &:hover {
+      color: var(--color-page);
+    }
+
+    &.-current {
+      color: var(--color-page);
+      font-weight: bold;
+    }
+  }
+}

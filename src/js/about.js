@@ -1,5 +1,5 @@
 import gsap from 'gsap';
-import { pipe } from './utils';
+import { pipe, only, desktopScreen } from './utils';
 import { scroller, shape, line, title, subtitle } from './common';
 
 const id = '#about';
@@ -21,15 +21,17 @@ const teammate = (n, l) => (tl) => {
     .from(`#about .col:nth-child(${n}) p`, { opacity: 0, x: 10 }, n);
 }
 
-pipe(
-  gsap.timeline(options),
-  (tl) => tl.addLabel(l1),
-  title(id, l1),
-  subtitle(id, l1),
-  line(id, l1),
-  scroller(id, l1 + '+=0.2'),
-  teammate('1', l1),
-  teammate('2', l1 + '+=0.2'),
-  teammate('3', l1 + '+=0.4'),
-  teammate('4', l1 + '+=0.6'),
-);
+only(desktopScreen, () => {
+  pipe(
+    gsap.timeline(options),
+    (tl) => tl.addLabel(l1),
+    title(id, l1),
+    subtitle(id, l1),
+    line(id, l1),
+    scroller(id, l1 + '+=0.2'),
+    teammate('1', l1),
+    teammate('2', l1 + '+=0.2'),
+    teammate('3', l1 + '+=0.4'),
+    teammate('4', l1 + '+=0.6'),
+  );
+});

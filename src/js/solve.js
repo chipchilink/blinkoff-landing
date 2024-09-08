@@ -1,5 +1,5 @@
 import gsap from 'gsap';
-import { pipe } from './utils';
+import { pipe, only, desktopScreen } from './utils';
 import { scroller } from './common';
 
 const id = '#solve';
@@ -11,7 +11,9 @@ const options = {
   },
 };
 
-pipe(
-  gsap.timeline(options),
-  scroller(id),
-);
+only(desktopScreen, () => {
+  pipe(
+    gsap.timeline(options),
+    scroller(id),
+  );
+});

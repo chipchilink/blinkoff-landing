@@ -3,6 +3,10 @@
 
   .line {
     position: relative;
+
+    @media (max-width: $md) {
+      display: none !important;
+    }
   }
 
   &.-medium {
@@ -24,6 +28,10 @@
       flex: 0 0 var(--size);
       height: 2px;
       margin-right: 12px;
+    }
+
+    @media (max-width: $md){
+      display: initial;
     }
   }
 
