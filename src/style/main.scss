@@ -64,6 +64,10 @@ strong {
   color: var(--color-strong);
 }
 
+body.-menu-active {
+  overflow: hidden;
+}
+
 .typography {
   li {
     display: flex;
@@ -81,6 +85,41 @@ strong {
       display: inline-block;
       margin-right: 10px;
       box-sizing: border-box;
+    }
+  }
+}
+
+li.descr-item {
+  display: flex;
+  align-items: center;
+  padding-bottom: 1.2em;
+  margin-bottom: 0;
+  color: var(--color-text);
+  transition: all .33s ease-in-out;
+  padding-left: 0;
+  cursor: pointer;
+
+  .descr-list.-active &:not(.-active) {
+    opacity: .6;
+  }
+
+  &:before {
+    content: '';
+    --size: 12px;
+    width: var(--size);
+    height: var(--size);
+    flex: 0 0 var(--size);
+    border: 3px solid var(--color-text);
+    display: inline-block;
+    margin-right: 10px;
+    box-sizing: border-box;
+  }
+
+  &.-active {
+    padding-left: 1em;
+
+    &:before {
+      border-color: var(--color-strong);
     }
   }
 }
@@ -444,20 +483,16 @@ header, footer, section {
   display: inline-block;
   position: absolute;
   overflow: hidden;
-  z-index: 1;
-
-  @media (max-width: $md) {
-    z-index: 0;
-  }
+  z-index: 0;
 }
 
 #complect-controller {
-  top: -40px;
-  left: 10px;
+  top: -100px;
+  left: -10px;
 
   .descr-label {
-    top: calc(100% + 10px);
-    left: 45%;
+    top: calc(100% + -60px);
+    left: 40%;
     transform: translateX(-50%);
   }
 
@@ -466,7 +501,7 @@ header, footer, section {
     left: -70px;
 
     .descr-label {
-      top: 275px;
+      top: 280px;
       left: 80px;
       transform: translateX(0);
     }
@@ -573,8 +608,8 @@ header, footer, section {
   }
 }
 
-#descr3-point-1 { top: -17px; left: 27px; }
-#descr3-point-2 { top: 34px; left: 306px; }
+#descr3-point-1 { top: 34px; left: 306px; }
+#descr3-point-2 { top: -17px; left: 27px; }
 #descr3-point-3 { top: -28px; left: 184px; }
 #descr3-point-4 { top: 40px; left: 60px; }
 #descr3-point-5 { top: -161px; left: 368px; }
@@ -787,9 +822,9 @@ header, footer, section {
 
 #m-head-incubator {
   position: absolute;
-  bottom: -140px;
+  bottom: -105px;
   transform: translateX(-50%);
-  left: calc(50% + 120px);
+  left: calc(50% + 130px);
 }
 
 #m-head-iphone-app {
@@ -830,7 +865,7 @@ header, footer, section {
 }
 
 #descr1-mobile {
-  width: calc(100% + 2 * var(--side-offset));
+  width: 100vw;
   margin-left: calc(-1 * var(--side-offset));
   margin-right: calc(-1 * var(--side-offset));
 
@@ -848,6 +883,8 @@ header, footer, section {
   img {
     position: absolute;
     transform: translateX(-50%);
+    width: 220px;
+    top: 20px;
   }
 }
 
@@ -884,4 +921,10 @@ header, footer, section {
   right: 0;
   bottom: 0;
   z-index: -1;
+}
+
+.descr-mobile-pict {
+  img {
+    width: 100%;
+  }
 }

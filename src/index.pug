@@ -66,7 +66,7 @@ html(lang="ru")
               #m-head-incubator
                 img(src="incubator.png" alt="" width="224" height="194")
               #m-head-iphone-app
-                img(src="iphone-app.png" alt="" width="178" height="299")
+                img(src="iphone-app.png" alt="" width="178" height="329")
       .head-section.right
         .top-bar
           +nav
@@ -172,7 +172,7 @@ html(lang="ru")
                 1. Выходе датчика из строя;<br>
                 2. Неисправной работе нагревательного элемента или не наборе влажности;<br>
                 3. Отключении света;<br>
-            .-m#descr1-mobile
+            .-m.descr-mobile-pict#descr1-mobile
               img(src="descr1-mobile.png" alt="")
 
           .scroll-block#controller.descr-content.-with-line.-medium.-left
@@ -186,7 +186,7 @@ html(lang="ru")
                 индикаторах и ориентации светодиодов с энкодером на фронтальной части устройства.
               p.
                 Обе платы соединены для обеспечения энергопитания и передачи данных по протоколу SPI.
-            .-m#descr2-mobile
+            .-m.descr-mobile-pict#descr2-mobile
               img(src="descr2-mobile.png" alt="")
 
           .scroll-block#specifications.descr-content.-with-line.-medium.-left
@@ -194,15 +194,15 @@ html(lang="ru")
             +scroll
             .typography
               h2.-a-title Основные технические параметры
-              ul.-a-list
-                li#p2.descr-item Контроллер организован на базе двухъядерного процессора ESP-WROOM-32;
+              ul.descr-list.-a-list
+                li#p1.descr-item Контроллер организован на базе двухъядерного процессора ESP-WROOM-32;
+                li#p2p5.descr-item Ток нагрузки: Нагрев - 17A/200Вт, Увлажнение - 2А/25Вт, Обдув - 2А/25Вт, Переворот - 4А/50Вт;
                 li#p3-1.descr-item Питание: 12 Вольт DC;
-                li#p1p5.descr-item Ток нагрузки: Нагрев - 17A/200Вт, Увлажнение - 2А/25Вт, Обдув - 2А/25Вт, Переворот - 4А/50Вт;
                 li#p3-2.descr-item Диапазон установки температуры: +1 - +49.9 ℃;
                 li#p3-3.descr-item Диапазон установки влажности: 1% - 99%;
                 li#p4-1.descr-item Рабочая температура: -20 - +45 ℃;
                 li#p4-2.descr-item Работа при влажности: 0 - 100%;
-            .-m#descr3-mobile
+            .-m.descr-mobile-pict#descr3-mobile
               img(src="descr3-mobile.png" alt="")
 
           .scroll-block#android-base.descr-content.-with-line.-medium.-left
@@ -217,7 +217,7 @@ html(lang="ru")
                 дающий быструю и гибкую настройку всего необходимого в одном месте.
               p.
                 В сумме эти факторы приводят к повышению безопасности процесса инкубации домашней птицы.
-            .-m#descr4-mobile
+            .-m.descr-mobile-pict#descr4-mobile
               img(src="descr4-mobile.png" alt="")
 
       .right
@@ -227,13 +227,13 @@ html(lang="ru")
             .descr-label(style="top: 0; left: 30px;")
               .descr-label-inner#descr1-smartphone-label Смартфон
             img#descr1-smartphone-img(src="descr1-smartphone.png" alt="")
-          .tv-block#descr1-controller(style="left: 200px; bottom: 150px")
-            .descr-label(style="top: 100%; left: 50%; transform: translateX(-50%)")
+          .tv-block#descr1-controller(style="left: 185px; bottom: 127px")
+            .descr-label(style="top: 92%; left: 40%; transform: translateX(-50%)")
               .descr-label-inner#descr1-controller-label Контроллер
             img#descr1-controller-img(src="descr1-controller.png" alt="")
           .tv-block#descr1-panel-controller(style="left: 400px; top: 30px")
             .descr-label(style="top: 100%; left: 50%; transform: translateX(-50%)")
-              .descr-label-inner#descr1-panel-controller-label Сайт. Панель управления
+              .descr-label-inner#descr1-panel-controller-label Телеграм-бот
             img#descr1-panel-controller-img(src="descr1-panel-controller.png" alt="")
           .tv-block(style="bottom: -20px; left: 180px")
             img#descr1-bluetooth(src="descr1-bluetooth.png" alt="")
@@ -241,8 +241,8 @@ html(lang="ru")
             img#descr1-wifi(src="descr1-wifi.png" alt="")
 
         .tv#tv-controller
-          .tv-block#descr2-slave-plata(style="bottom: 20px; left: 180px")
-            .descr-label(style="top: 30px; left: -70px;")
+          .tv-block#descr2-slave-plata(style="bottom: -70px; left: 0px")
+            .descr-label(style="top: 95px; left: 110px;")
               .descr-label-inner#descr2-slave-plata-label slave-плата
             img#descr2-slave-plata-img(src="descr2-slave-plata.png" alt="")
           .tv-block#descr2-parent-plata(style="top: 20px; left: 180px")

@@ -26,9 +26,11 @@ window.addEventListener("scroll", navMarker);
 links.forEach((link) => {
   link.onclick = () => {
     nav.classList.remove('-active');
+    document.body.classList.remove('-menu-active');
   };
 });
 
 burger.onclick = () => {
   nav.classList.toggle('-active');
+  document.body.classList.toggle('-menu-active');
 };
