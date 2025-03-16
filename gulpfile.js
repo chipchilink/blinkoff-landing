@@ -39,6 +39,10 @@ const paths = {
     input: './src/js/*',
     output: './dist/',
   },
+  files: {
+    input: './src/files/*',
+    output: './dist/',
+  },
 };
 
 const cleanFonts = () =>
@@ -100,9 +104,14 @@ const js = (mode) => () =>
     .pipe(browserSync.stream());
 
 const php = () =>
-    gulp
-      .src(paths.php.input)
-      .pipe(gulp.dest(paths.php.output));
+  gulp
+    .src(paths.php.input)
+    .pipe(gulp.dest(paths.php.output));
+
+const files = () =>
+  gulp
+    .src(paths.files.input)
+    .pipe(gulp.dest(paths.files.output));
 
 const init = () =>
   gulp
@@ -125,6 +134,7 @@ const create = (p) => gulp.series(
     php,
     images,
     js(p.mode),
+    files,
   ),
 );
 
@@ -143,6 +153,7 @@ const watcher = (done) => {
   gulp.watch('./src/**/*.scss', style);
   gulp.watch('./src/**/*.pug', view);
   gulp.watch(paths.images.input, images);
+  gulp.watch(paths.files.input, files);
   gulp.watch(paths.js.input, js('development'));
   gulp.watch(paths.root.input).on('change', browserSync.reload);
   done();

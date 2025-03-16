@@ -21,5 +21,6 @@ only(desktopScreen, () => {
     scroller('#top', l2, 0.1),
     (tl) => tl.from('#iphone-app img', { opacity: 0 }, l2),
     (tl) => tl.from('#incubator img', { opacity: 0, x: -100 }, l2),
+    (tl) => tl.from('#head-main-download', { opacity: 0, y: -40 }, l1),
   );
 });
